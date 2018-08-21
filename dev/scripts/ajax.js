@@ -1,32 +1,35 @@
-const weed = {}
+const app = {}
 
-weed.apiURL = 'https://www.alphavantage.co/query'
-weed.apiKEY = 'PVYE0BRRSFPNQIKP'
+app.apiURL = 'http://superheroapi.com';
+app.apiKEY = '10211233079057278';
 
-const weedSymbols = ['weed.to', 'acb.to', 'cron', 'aph.to', 'acbff', 'gwph', 'stz', 'hmmj.to', 'sprwf', 'cann', 'erbb', 'puf.cn', 'axim', 'gblx', 'budz', 'owcp', 'mym', 'mjne', 'cnab', 'rmhb', 'srna', 'phot', 'insy', 'cbds', 'emmbf', 'agtk', 'zyne', 'xxii', 'aero', 'abbv', 'acan', 'ammj', 'attbf', 'blpg', 'cvsi', 'cara', 'cbis', 'cgrw', 'pkph', 'edxc', 'fbec', 'grnh', 'hemp', 'hlix', 'igc', 'iipr', 'imlff', 'inqd', 'kays', 'kshb', 'ldsyf', 'lxrp', 'mcig', 'mjna', 'mntr','mdcl', 'msrt', 'myhi', 'ndev', 'ntrr', 'ogrmf', 'plpl', 'pntv', 'potn', 'smg', 'sprwf', 'trtc', 'turv', 'twmjf', 'ubqu', 'vpor']
 
-// console.log(weedSymbols.length)
+const charIDs = [];
+for (i = 1; i <= 2; i++) {
+    charIDs.push(i);
+}
 
-weed.getWeed = function (ticker) { 
+app.getHero = (id) => { 
     return $.ajax({
-        url: weed.apiURL,
+        url: `${app.apiURL}/api/${app.apiKEY}/${id}`,
         method: 'GET',
-        dataType: 'json',
+        dataType: 'jsonp',
         data: {
-            function: 'TIME_SERIES_DAILY',
-            apikey: weed.apiKEY,
-            format: 'json',
-            symbol: ticker,
-            outputsize: 'full'
+            apikey: app.apiKEY,
         }
-    })
+    });
 };
 
+const characterRequests = charIDs.map(app.getHero);
+$.when(...characterRequests)
+    .then((...responses) => {
+        responses.map((something) => {
+            console.log(something[0])
+        });
+    });
 
-const weedRequests = weedSymbols.map(weed.getWeed);
-console.log(weedRequests);
-// $.when(...weedRequests)
-// console.log(weedRequests)
-// .then((...weedResponse) => {
-//     // console.log(weedResponse)
-// })
+
+
+
+
+
