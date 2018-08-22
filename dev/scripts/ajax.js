@@ -1,36 +1,62 @@
 const app = {}
-hello
 
 app.apiURL = 'http://superheroapi.com';
-app.apiKEY = '10211233079057278';
+app.apiKEY = '10205575676227056';
 
 
-const charIDs = [];
-for (i = 1; i <= 2; i++) {
-    charIDs.push(i);
-}
+const characters = [];
 
-app.getHero = (id) => { 
+const searchValue = characters.push($('.hero1').val());
+const searchValue2 = characters.push($('.hero2').val());
+
+app.getHero = (name) => { 
     return $.ajax({
-        url: `${app.apiURL}/api/${app.apiKEY}/${id}`,
+        url: 'http://proxy.hackeryou.com',
         method: 'GET',
-        dataType: 'jsonp',
+        dataType: 'json',
         data: {
-            apikey: app.apiKEY,
+            reqUrl: `http://superheroapi.com/api/10205575676227056/search/${name}`,
+            proxyHeaders: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            xmlToJSON: false,
+            useCache: false
         }
-    });
+    })
+    // .then((res) => {
+    //     app.show
+    // })
 };
 
-const characterRequests = charIDs.map(app.getHero);
+// app.getHero();
+
+const characterRequests = characters.map(app.getHero);
 $.when(...characterRequests)
     .then((...responses) => {
-        responses.map((something) => {
-            console.log(something[0])
+        responses.map((object) => {
+            return (object[0][0]);
         });
+        console.log(responses)
     });
 
+app.event = function () {
+    $('.searchHero').on('submit', function (e) {
+        e.preventDefault();
+        console.log(app.getHero(searchValue));
+        console.log(app.getHero(searchValue2));
+    });
+}
 
 
 
+app.init = function () {
+    app.getHero();
+    app.event();
+};
 
+
+$(function () {
+    app.init();
+
+});
 
