@@ -1,3 +1,9 @@
+@import 'partials/setup';
+@import 'partials/utils';
+
+html {
+    font-size: 62.5%;
+}
 body {
    margin: 0;
    padding: 0;
@@ -8,6 +14,37 @@ header {
     background: url(../../assets/deadpool.jpg) bottom no-repeat;
     background-size: cover;
 }
+.speech-bubble {
+    position: relative;
+    top: -20%;
+    right: -10%;
+	background: #fafff9;
+    border-radius: 3rem;
+    width: 50%;
+    font-family: $font-comic;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+    word-spacing: 1.3px;
+    padding: 1rem;
+    border: black solid 5px;
+
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 90%;
+	width: 0;
+	height: 0;
+	border: 33px solid transparent;
+	border-top-color: black;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -16.5px;
+	margin-bottom: -33px;
+}
+
 
 section {
     height: 100vh;
@@ -29,31 +66,44 @@ section {
 input[type=submit] {
     display: block;
     margin: 0 auto;
+    padding: 10px;
+    width: 30%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    font-family: $font-comic;
+    font-size: 2rem;
+    letter-spacing: 3px;
 }
 
 input[type=search] {
     padding: 15px;
     width: 20%;
     border-radius: 5px;
-    border: none;
-    margin: 20px 0
+    font-size: 2rem;
+    border: black solid 2px;
+    margin: 20px 0;
+    box-shadow: 5px 5px 5px gray;
 }
 
 h1 {
    font-size: 60px;
+   font-family: $font-comic;
+   letter-spacing: 5px;
    text-align: center;
    margin: 0;
 }
 
 img {
-   max-width: 50%;
+   max-width: 100%;
 }
 .statContainer {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
    .stats1 {
-      width: 50%
+      width: 50%;
    }
    .stats2 {
       width: 50%;
