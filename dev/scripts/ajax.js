@@ -61,10 +61,15 @@ app.event = function () {
             .then((...responses) => {
                 responses.map((item) => {
                     console.log(item.results);
+                    let heroObjects = item.results;
+                    let heroFullName = heroObjects.forEach((name) => {
+                        console.log(name.biography["full-name"])
+                    });
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero1').val()}">`
-                    $('.stats1').append(heroName, heroImage);
+                    $('.stats1').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover'})
+                    $('.stats1').prepend(heroName);
                     let ctx = document.getElementById('myChart1').getContext('2d');
+                    Chart.defaults.global.defaultFontColor = 'white';
                     let chart = new Chart(ctx, {
                         type: 'horizontalBar',
                         data: {
@@ -94,10 +99,15 @@ app.event = function () {
         $.when(...characterRequests2)
             .then((...responses) => {
                 responses.map((item) => {
-                    console.log(item.results);
+                    let heroObjects = item.results;
+                    let heroFullName = heroObjects.forEach((name) => {
+                        console.log(name.biography["full-name"])
+                        
+                        $('.speechText').append(`${name.biography["full-name"]}`)
+                    });
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    const heroImage = `<figure><img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}"></figure>`
-                    $('.stats2').append(heroName, heroImage);
+                    const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}">`
+                    $('.stats2').prepend(heroName, heroImage);
 
                     // bar chart begins here
                     let ctx = document.getElementById('myChart2').getContext('2d');
