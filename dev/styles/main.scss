@@ -1,24 +1,52 @@
 body {
-   background: slategrey;
+   margin: 0;
+   padding: 0;
 }
+
+header {
+    height: 100vh;
+    background: url(../../assets/deadpool.jpg) bottom no-repeat;
+    background-size: cover;
+}
+
+section {
+    height: 100vh;
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.searchHero {
+    text-align: center;
+    width: 100%;
+}
+
+input[type=submit] {
+    display: block;
+    margin: 0 auto;
+}
+
+input[type=search] {
+    padding: 15px;
+    width: 20%;
+    border-radius: 5px;
+    border: none;
+    margin: 20px 0
+}
+
 h1 {
    font-size: 60px;
    text-align: center;
-}
-.searchHero {
-   text-align: center;
-   // .hero1 {
-   //    padding: 50px;
-   //    width: 300px;
-   // }
-   // .hero2 {
-   //    padding: 50px;
-   //    width: 300px;
-   // }
+   margin: 0;
 }
 
 img {
-   width: 50%;
+   max-width: 50%;
 }
 .statContainer {
    display: flex;
