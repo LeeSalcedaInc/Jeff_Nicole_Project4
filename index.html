@@ -5,23 +5,29 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <link rel="stylesheet" href="public/styles/style.css">
+    <script src="dev/scripts/Chart.min.js"></script>
    <title>Jeff and Nicole - Project 4</title>
 </head>
 <body>
    <header>
-        <h1>Heroes</h1>
-        <form action="" class="searchHero">
-            <input type="search" class="hero1">
-            <input type="search" class="hero2">
-            <input type="submit">
-        </form>
+       <div class="wrapper">
+            <h1>Heroes</h1>
+            <form action="" class="searchHero">
+                <input type="search" class="hero1" placeholder="Enter the Name of Superhero or Villain">
+                <input type="search" class="hero2" placeholder="Enter the Name of Superhero or Villain">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
    </header>
-   <section class="statContainer">
+   <section class="statContainer" id="scroll">
        <div class="stats1">
-
+        <canvas id="myChart1">
+            
+        </canvas>
        </div>
        <div class="stats2">
-    
+        <canvas id="myChart2">
+        </canvas>
        </div>
    </section>
 
@@ -29,5 +35,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="dev/scripts/ajax.js"></script>
     <script src="dev/scripts/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.1.2/jquery.smooth-scroll.min.js"></script>
 </body>
 </html>

@@ -60,10 +60,32 @@ app.event = function () {
         $.when(...characterRequests)
             .then((...responses) => {
                 responses.map((item) => {
-                    // console.log(item.results);
+                    console.log(item.results[0]);
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
                     const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero1').val()}">`
                     $('.stats1').append(heroName, heroImage);
+                    let ctx = document.getElementById('myChart1').getContext('2d');
+                    let chart = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                            datasets: [{
+                                label: "Hero Stats",
+                                backgroundColor: 'red',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    }); // End of chart
                     
                 });
             });
@@ -72,11 +94,39 @@ app.event = function () {
         $.when(...characterRequests2)
             .then((...responses) => {
                 responses.map((item) => {
-                    // console.log(item.results);
+                    console.log(item.results[0]);
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}">`
-
+                    const heroImage = `<figure><img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}"></figure>`
                     $('.stats2').append(heroName, heroImage);
+                    let ctx = document.getElementById('myChart2').getContext('2d');
+                    let chart = new Chart(ctx, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                            datasets: [{
+                                label: "Hero Stats",
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
+                                backgroundColor: [
+                                    "#f38b4a",
+                                    "#56d798",
+                                    "blue",
+                                    "orange",
+                                    "yellow",
+                                    "red"
+                                ],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    }); // End of Chart
                 });
             });
 
