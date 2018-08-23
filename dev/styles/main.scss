@@ -1,0 +1,29 @@
+body {
+   background: slategrey;
+}
+h1 {
+   font-size: 60px;
+   text-align: center;
+}
+.searchHero {
+   text-align: center;
+   .hero1 {
+      padding: 50px;
+      width: 300px;
+   }
+}
+
+img {
+   width: 50%;
+}
+.statContainer {
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+   .stats1 {
+      width: 50%
+   }
+   .stats2 {
+      width: 50%;
+   }
+}
