@@ -85,7 +85,7 @@ app.event = function () {
     });
 }
 
-
+// hello
 app.init = function () {
     app.getHero();
     app.event();
