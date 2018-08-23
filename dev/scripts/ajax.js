@@ -55,12 +55,12 @@ app.event = function () {
         searchValue1 = characters.push($('.hero1').val());
         searchValue2 = characters2.push($('.hero2').val());
 
-        console.log(searchValue1, searchValue2,characters, characters2);
+        // console.log(searchValue1, searchValue2,characters, characters2);
         const characterRequests = characters.map(app.getHero);
         $.when(...characterRequests)
             .then((...responses) => {
                 responses.map((item) => {
-                    console.log(item.results[0]);
+                    console.log(item.results);
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
                     const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero1').val()}">`
                     $('.stats1').append(heroName, heroImage);
@@ -94,10 +94,12 @@ app.event = function () {
         $.when(...characterRequests2)
             .then((...responses) => {
                 responses.map((item) => {
-                    console.log(item.results[0]);
+                    console.log(item.results);
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
                     const heroImage = `<figure><img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}"></figure>`
                     $('.stats2').append(heroName, heroImage);
+
+                    // bar chart begins here
                     let ctx = document.getElementById('myChart2').getContext('2d');
                     let chart = new Chart(ctx, {
                         type: 'horizontalBar',
@@ -129,13 +131,10 @@ app.event = function () {
                     }); // End of Chart
                 });
             });
-
-        // console.log(app.getHero(searchValue));
-        // console.log(app.getHero(searchValue2));
     });
 }
 
-// hello
+
 app.init = function () {
     app.getHero();
     app.event();
