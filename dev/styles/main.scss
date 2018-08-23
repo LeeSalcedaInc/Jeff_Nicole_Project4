@@ -49,6 +49,13 @@ header {
 section {
     height: 100vh;
 }
+h2 {
+    color: seashell;
+    font-family: $font-comic;
+    font-size: 3rem;
+    text-align: center;
+    padding-bottom: 30%;
+}
 
 .wrapper {
     height: 100vh;
@@ -102,6 +109,7 @@ img {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
+   height: 100vh;
    .stats1 {
       width: 50%;
    }
