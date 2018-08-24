@@ -17,10 +17,10 @@ header {
 .speech-bubble {
     position: relative;
     top: -10%;
-    right: 0;
+    right: 5%;
 	background: #fafff9;
     border-radius: 3rem;
-    width: 50%;
+    width: 60%;
     font-family: $font-comic;
     font-size: 2rem;
     letter-spacing: 1.2px;
@@ -34,7 +34,7 @@ header {
 	content: '';
 	position: absolute;
 	bottom: 0;
-	left: 90%;
+	left: 95%;
 	width: 0;
 	height: 0;
 	border: 33px solid transparent;
@@ -44,7 +44,18 @@ header {
 	margin-left: -16.5px;
 	margin-bottom: -33px;
 }
-
+.speechListContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    flex-direction: row;
+    .speechList1 {
+        width: 50%;
+    }
+    .speechList2 {
+        width: 50%;
+    }
+}
 
 section {
     height: 100vh;
@@ -115,14 +126,28 @@ img {
       width: 50%;
       border: 5px solid white;
       #myChart1 {
-          padding: 0 6rem;
+          padding: 0 5rem;
       }
    }
    .stats2 {
       width: 50%;
       border: 5px solid white;
      #myChart2 {
-          padding: 0 6rem;
+          padding: 0 5rem;
       }
    }
+}
+
+// hiding the radio button
+input[type = radio] {
+    visibility:hidden;
+}
+label {
+    cursor: pointer;
+    &:hover {
+        background: tomato;
+    }
+}
+input:checked + label {
+    background: #fae16c;
 }
