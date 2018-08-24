@@ -1,17 +1,14 @@
-// making an object for namespacing
-const app = {}
-
 // app.apiURL = 'http://superheroapi.com';
 // app.apiKEY = '10205575676227056';
 
+// making an object for namespacing
+const app = {}
 // making an empty array called characters
-let characters = [];
+let characters1 = [];
 let characters2 = [];
-// storing the user's inputs into our empty characters array
-
 
 // making our ajax request
-app.getHero = (name) => { 
+app.getHero1 = (name) => { 
     return $.ajax({
         url: 'http://proxy.hackeryou.com',
         method: 'GET',
@@ -52,23 +49,35 @@ app.event = function () {
         let heroInput2 = $('.hero2').val().trim();
         let searchValue1 = "";
         let searchValue2 = "";
-        searchValue1 = characters.push($('.hero1').val());
+        searchValue1 = characters1.push($('.hero1').val());
         searchValue2 = characters2.push($('.hero2').val());
 
         // console.log(searchValue1, searchValue2,characters, characters2);
-        const characterRequests = characters.map(app.getHero);
+        const characterRequests = characters1.map(app.getHero1);
         $.when(...characterRequests)
             .then((...responses) => {
                 responses.map((item) => {
                     console.log(item.results);
+                    // forEach iterates through heroObjects to find full-name
                     let heroObjects = item.results;
                     let heroFullName = heroObjects.forEach((name) => {
                         console.log(name.biography["full-name"])
+                        $('.speechText').empty();
+                        $('.speechText1').text(`Which ${item.results[0].name} did you mean?`);
+                        $('.speechList1').append(
+                             `<input type="radio" name="heroFullName" id="heroFullName">
+                             <label for="heroFullName">${name.biography["full-name"]}</label>`
+                        );
                     });
-                    const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    $('.stats1').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover'});
-                    $('.stats1').prepend(heroName);
+                    // this function prepends the hero's name to the first .stats1 div and applies styles
+                    const displayHeroName = `<h2 class="displayHeroName">${item.results[0].name}</h2>`;
+                    $('.stats1').css({ 
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 
+                        'background-size': 'cover'
+                    });
+                    $('.stats1').prepend(displayHeroName);
 
+                    // myChart1 begins here
                     let ctx = document.getElementById('myChart1').getContext('2d');
                     Chart.defaults.global.defaultFontColor = 'white';
                     let chart = new Chart(ctx, {
@@ -77,9 +86,22 @@ app.event = function () {
                             labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
                             datasets: [{
                                 label: "Hero Stats",
-                                backgroundColor: ['red', 'lightsteelblue', 'red', 'lightsteelblue', 'red', 'lightsteelblue'],
+                                backgroundColor: [
+                                    'red', 
+                                    'lightsteelblue', 
+                                    'red', 
+                                    'lightsteelblue', 
+                                    'red', 
+                                    'lightsteelblue'],
                                 borderColor: 'rgb(255, 99, 132)',
-                                data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
+                                data: [
+                                    `${item.results[0].powerstats.combat}`, 
+                                    `${item.results[0].powerstats.durability}`, 
+                                    `${item.results[0].powerstats.intelligence}`, 
+                                    `${item.results[0].powerstats.power}`, 
+                                    `${item.results[0].powerstats.speed}`, 
+                                    `${item.results[0].powerstats.strength}`
+                                ],
                             }]
                         },
                         options: {
@@ -111,19 +133,29 @@ app.event = function () {
             .then((...responses) => {
                 responses.map((item) => {
                     let heroObjects = item.results;
-                    let heroFullName = heroObjects.forEach((name) => {
+                    heroObjects.forEach((name) => {
                         console.log(name.biography["full-name"])
-                        $('.speechText').html(`Which ${item.results[0].name} did you mean?`);
-                        $('.speechList').append(`<li><a href="#">${name.biography["full-name"]}</a></li>`);
-                        // $('.speechText').append(`<p>${name.biography["full-name"]}</p>`)
+                        $('.speechText').empty();
+                        $('.speechText2').text(`Which ${item.results[0].name} did you mean?`);
+                        $('.speechList2').append(
+                            `<input type="radio" name="heroFullName" id="heroFullName">
+                             <label for="heroFullName">${name.biography["full-name"]}</label>`
+                        );
+           
+                        // $('.speechText').html(`Which ${item.results[0].name} did you mean?`);
+                        // $('.speechList2').append(
+                        //     `<li><a href="#">${name.biography["full-name"]}</a></li>`
+                        // );
                     });
+                    // this function prepends the hero's name to the .stats2 div and applies styles
+                    const displayHeroName = `<h2 class="displayHeroName">${item.results[0].name}</h2>`;
+                    $('.stats2').css({ 
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 
+                        'background-size': 'cover' 
+                    });
+                    $('.stats2').prepend(displayHeroName);
 
-                    const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    $('.stats2').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover' });
-                    // const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}">`
-                    $('.stats2').prepend(heroName);
-
-                    // bar chart begins here
+                    // myChart2 begins here
                     let ctx = document.getElementById('myChart2').getContext('2d');
                     let chart = new Chart(ctx, {
                         type: 'horizontalBar',
@@ -132,7 +164,14 @@ app.event = function () {
                             datasets: [{
                                 label: "Hero Stats",
                                 borderColor: 'rgb(255, 99, 132)',
-                                data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
+                                data: [
+                                    `${item.results[0].powerstats.combat}`, 
+                                    `${item.results[0].powerstats.durability}`, 
+                                    `${item.results[0].powerstats.intelligence}`, 
+                                    `${item.results[0].powerstats.power}`, 
+                                    `${item.results[0].powerstats.speed}`, 
+                                    `${item.results[0].powerstats.strength}`
+                                ],
                                 backgroundColor: [
                                     "mediumblue",
                                     "lightsteelblue",
@@ -146,8 +185,18 @@ app.event = function () {
                         options: {
                             scales: {
                                 xAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
                                     ticks: {
                                         beginAtZero: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
                                     }
                                 }]
                             }
@@ -160,7 +209,8 @@ app.event = function () {
 
 
 app.init = function () {
-    app.getHero();
+    app.getHero1();
+    app.getHero2()
     app.event();
 };
 
@@ -170,5 +220,3 @@ $(function () {
 
 });
 
-// how do we filter through the same name when a user puts their input in?
-// 
