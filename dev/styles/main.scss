@@ -16,8 +16,8 @@ header {
 }
 .speech-bubble {
     position: relative;
-    top: -20%;
-    right: -10%;
+    top: -10%;
+    right: 0;
 	background: #fafff9;
     border-radius: 3rem;
     width: 50%;
@@ -52,9 +52,10 @@ section {
 h2 {
     color: seashell;
     font-family: $font-comic;
-    font-size: 3rem;
+    font-size: 4rem;
     text-align: center;
-    padding-bottom: 30%;
+    letter-spacing: 3px;
+    padding: 2% 0 35%;
 }
 
 .wrapper {
@@ -112,8 +113,16 @@ img {
    height: 100vh;
    .stats1 {
       width: 50%;
+      border: 5px solid white;
+      #myChart1 {
+          padding: 0 6rem;
+      }
    }
    .stats2 {
       width: 50%;
+      border: 5px solid white;
+     #myChart2 {
+          padding: 0 6rem;
+      }
    }
 }

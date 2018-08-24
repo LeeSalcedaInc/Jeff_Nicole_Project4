@@ -66,8 +66,9 @@ app.event = function () {
                         console.log(name.biography["full-name"])
                     });
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    $('.stats1').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover'})
+                    $('.stats1').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover'});
                     $('.stats1').prepend(heroName);
+
                     let ctx = document.getElementById('myChart1').getContext('2d');
                     Chart.defaults.global.defaultFontColor = 'white';
                     let chart = new Chart(ctx, {
@@ -76,7 +77,7 @@ app.event = function () {
                             labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
                             datasets: [{
                                 label: "Hero Stats",
-                                backgroundColor: 'red',
+                                backgroundColor: ['red', 'lightsteelblue', 'red', 'lightsteelblue', 'red', 'lightsteelblue'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
                             }]
@@ -84,8 +85,18 @@ app.event = function () {
                         options: {
                             scales: {
                                 xAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
                                     ticks: {
                                         beginAtZero: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
                                     }
                                 }]
                             }
@@ -102,12 +113,15 @@ app.event = function () {
                     let heroObjects = item.results;
                     let heroFullName = heroObjects.forEach((name) => {
                         console.log(name.biography["full-name"])
-                        
-                        $('.speechText').append(`${name.biography["full-name"]}`)
+                        $('.speechText').html(`Which ${item.results[0].name} did you mean?`);
+                        $('.speechList').append(`<li><a href="#">${name.biography["full-name"]}</a></li>`);
+                        // $('.speechText').append(`<p>${name.biography["full-name"]}</p>`)
                     });
+
                     const heroName = `<h2 class="heroName">${item.results[0].name}</h2>`;
-                    const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}">`
-                    $('.stats2').prepend(heroName, heroImage);
+                    $('.stats2').css({ 'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${item.results[0].image.url}) no-repeat center`, 'background-size': 'cover' });
+                    // const heroImage = `<img src=${item.results[0].image.url} alt="hero image of ${$('.hero2').val()}">`
+                    $('.stats2').prepend(heroName);
 
                     // bar chart begins here
                     let ctx = document.getElementById('myChart2').getContext('2d');
@@ -120,12 +134,12 @@ app.event = function () {
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [`${item.results[0].powerstats.combat}`, `${item.results[0].powerstats.durability}`, `${item.results[0].powerstats.intelligence}`, `${item.results[0].powerstats.power}`, `${item.results[0].powerstats.speed}`, `${item.results[0].powerstats.strength}`],
                                 backgroundColor: [
-                                    "#f38b4a",
-                                    "#56d798",
-                                    "blue",
-                                    "orange",
-                                    "yellow",
-                                    "red"
+                                    "mediumblue",
+                                    "lightsteelblue",
+                                    "mediumblue",
+                                    "lightsteelblue",
+                                    "mediumblue",
+                                    "lightsteelblue"
                                 ],
                             }]
                         },
