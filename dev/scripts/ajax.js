@@ -60,13 +60,14 @@ app.event = function () {
                     console.log(item.results);
                     // forEach iterates through heroObjects to find full-name
                     let heroObjects = item.results;
-                    let heroFullName = heroObjects.forEach((name) => {
-                        console.log(name.biography["full-name"])
+                    let fullname = `${ name.biography["full-name"] }`;
+                    heroObjects.forEach((name) => {
+                        console.log(fullname)
                         $('.speechText').empty();
                         $('.speechText1').text(`Which ${item.results[0].name} did you mean?`);
                         $('.speechList1').append(
-                             `<input type="radio" name="heroFullName" id="heroFullName">
-                             <label for="heroFullName">${name.biography["full-name"]}</label>`
+                            `<input type="radio" name="${fullname}" id="${fullname}1">
+                             <label for="${fullname}1">${fullname}</label>`
                         );
                     });
                     // this function prepends the hero's name to the first .stats1 div and applies styles
@@ -138,8 +139,8 @@ app.event = function () {
                         $('.speechText').empty();
                         $('.speechText2').text(`Which ${item.results[0].name} did you mean?`);
                         $('.speechList2').append(
-                            `<input type="radio" name="heroFullName" id="heroFullName">
-                             <label for="heroFullName">${name.biography["full-name"]}</label>`
+                            `<input type="radio" name="${ name.biography["full-name"] }" id="${name.biography["full-name"]}2">
+                             <label for="${name.biography["full-name"]}2">${name.biography["full-name"]}</label>`
                         );
            
                         // $('.speechText').html(`Which ${item.results[0].name} did you mean?`);
