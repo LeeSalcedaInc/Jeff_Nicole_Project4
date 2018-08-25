@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <link href="https://fonts.googleapis.com/css?family=Bangers|Coming+Soon|Open+Sans:400,700" rel="stylesheet">
-   <link rel="stylesheet" href="public/styles/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Bangers|Coming+Soon|Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="public/styles/style.css">
     <script src="dev/scripts/Chart.min.js"></script>
-   <title>Jeff and Nicole - Project 4</title>
+    <title>Jeff and Nicole - Project 4</title>
 </head>
+
 <body>
-   <header>
-       <div class="wrapper">
-           <div class="speech-bubble">
-               <div class="speechListContainer">
-                    <p class="speechText">Hey! All you gotta do is type in the name of your superhero to compare stats. All names are searchable....just not francis.</p>
+    <header>
+        <div class="wrapper">
+            <div class="speech-bubble">
+                <div class="speechListContainer">
+                    <p class="speechText">Hey! All you gotta do is type in the name of your superhero to compare stats. All names are searchable....just
+                        not francis.</p>
                     <form class="secondaryForm">
-                        <div class="fieldsetContainer">
-                            <fieldset class="speechList1">
-                                <p class="speechText1"></p>
-                            </fieldset>
-                            <fieldset class="speechList2">
-                                <p class="speechText2"></p>
-                            </fieldset>
-                        </div>
+                        <fieldset class="speechList1">
+                            <p class="speechText1"></p>
+                        </fieldset>
+                        <fieldset class="speechList2">
+                            <p class="speechText2"></p>
+                        </fieldset>
                         <!-- <input type="submit"> -->
                     </form>
-               </div>
-           </div>
+
+                </div>
+            </div>
             <h1>Heroes</h1>
             <form action="" class="searchHero">
                 <input type="search" class="hero1" placeholder="Hero / Villain Name">
@@ -35,18 +37,18 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-   </header>
-   <section class="statContainer" id="scroll">
-       <div class="stats1">
-        <canvas id="myChart1">
-            
-        </canvas>
-       </div>
-       <div class="stats2">
-        <canvas id="myChart2">
-        </canvas>
-       </div>
-   </section>
+    </header>
+    <section class="statContainer" id="scroll">
+        <div class="stats1">
+            <canvas id="myChart1">
+
+            </canvas>
+        </div>
+        <div class="stats2">
+            <canvas id="myChart2">
+            </canvas>
+        </div>
+    </section>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -54,4 +56,5 @@
     <script src="dev/scripts/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/2.1.2/jquery.smooth-scroll.min.js"></script>
 </body>
+
 </html>
