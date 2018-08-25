@@ -68,31 +68,70 @@ app.displaySpeechBubble = function(){
 app.submitEvent = function () {
     $('.secondaryForm').on('submit', function (e) {
         e.preventDefault();
-
-
-        // let heroSelection = $(`input[name=${}`)
+// this is where the input conditionals should be for diplaying the images below based on selection
     });
 }
-
-
-// app.displayHeroes = function(){
-//     app.firstHeroName = app.getHero1(app.characters1)
-    
-
-
-// }
+// myChart1 begins here
+app.myChart = function(hero1, hero2){
+    let ctx = document.getElementById('myChart1').getContext('2d');
+    Chart.defaults.global.defaultFontColor = 'white';
+    let chart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+            datasets: [{
+                label: "Hero Stats",
+                backgroundColor: [
+                    'red',
+                    'lightsteelblue',
+                    'red',
+                    'lightsteelblue',
+                    'red',
+                    'lightsteelblue'],
+                borderColor: 'rgb(255, 99, 132)',
+                data: [
+                    `${hero1.results[0].powerstats.combat}`,
+                    `${hero1.results[0].powerstats.durability}`,
+                    `${hero1.results[0].powerstats.intelligence}`,
+                    `${hero1.results[0].powerstats.power}`,
+                    `${hero1.results[0].powerstats.speed}`,
+                    `${hero1.results[0].powerstats.strength}`
+                ],
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    }
+                }]
+            }
+        }
+    }); // End of chart
+}
 
 // Comment
     app.displayHero = function (hero1, hero2) { 
         const displayHeroName1 = `<h2 class="displayHeroName">${app.firstHeroName.results[0].name}</h2>`;
         const displayHeroName2 = `<h2 class="displayHeroName">${app.secondHeroName.results[0].name}</h2>`
         $('.stats1').css({
-            'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.firstHeroName.results[0].image.url}) no-repeat center`,
+            'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero1.results[0].image.url}) no-repeat center`,
             'background-size': 'cover'
         }).append(displayHeroName1);
 
         $('.stats2').css({
-            'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.secondHeroName.results[0].image.url}) no-repeat center`,
+            'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero2.results[0].image.url}) no-repeat center`,
             'background-size': 'cover'
         }).append(displayHeroName2);
     }
@@ -102,6 +141,7 @@ app.submitEvent = function () {
         app.firstHeroName = await app.getHero1(app.characters1); // Samething as before without the when and then and no errors
         app.secondHeroName = await app.getHero2(app.characters2);
         app.displayHero(app.firstHeroName, app.secondHeroName);
+        app.myChart(app.firstHeroName, app.secondHeroName);
         app.displaySpeechBubble();
         app.submitEvent();
         // app.displayHeroes();
@@ -162,53 +202,53 @@ app.event = function () {
                     // });
 //                     $('.stats1').prepend(displayHeroName);
 
-//                     // myChart1 begins here
-//                     let ctx = document.getElementById('myChart1').getContext('2d');
-//                     Chart.defaults.global.defaultFontColor = 'white';
-//                     let chart = new Chart(ctx, {
-//                         type: 'horizontalBar',
-//                         data: {
-//                             labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
-//                             datasets: [{
-//                                 label: "Hero Stats",
-//                                 backgroundColor: [
-//                                     'red',
-//                                     'lightsteelblue',
-//                                     'red',
-//                                     'lightsteelblue',
-//                                     'red',
-//                                     'lightsteelblue'],
-//                                 borderColor: 'rgb(255, 99, 132)',
-//                                 data: [
-//                                     `${item.results[0].powerstats.combat}`,
-//                                     `${item.results[0].powerstats.durability}`,
-//                                     `${item.results[0].powerstats.intelligence}`,
-//                                     `${item.results[0].powerstats.power}`,
-//                                     `${item.results[0].powerstats.speed}`,
-//                                     `${item.results[0].powerstats.strength}`
-//                                 ],
-//                             }]
-//                         },
-//                         options: {
-//                             scales: {
-//                                 xAxes: [{
-//                                     gridLines: {
-//                                         display: false,
-//                                         drawBorder: false
-//                                     },
-//                                     ticks: {
-//                                         beginAtZero: true
-//                                     }
-//                                 }],
-//                                 yAxes: [{
-//                                     gridLines: {
-//                                         display: false,
-//                                         drawBorder: false
-//                                     }
-//                                 }]
-//                             }
-//                         }
-//                     }); // End of chart
+                    // // myChart1 begins here
+                    // let ctx = document.getElementById('myChart1').getContext('2d');
+                    // Chart.defaults.global.defaultFontColor = 'white';
+                    // let chart = new Chart(ctx, {
+                    //     type: 'horizontalBar',
+                    //     data: {
+                    //         labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                    //         datasets: [{
+                    //             label: "Hero Stats",
+                    //             backgroundColor: [
+                    //                 'red',
+                    //                 'lightsteelblue',
+                    //                 'red',
+                    //                 'lightsteelblue',
+                    //                 'red',
+                    //                 'lightsteelblue'],
+                    //             borderColor: 'rgb(255, 99, 132)',
+                    //             data: [
+                    //                 `${item.results[0].powerstats.combat}`,
+                    //                 `${item.results[0].powerstats.durability}`,
+                    //                 `${item.results[0].powerstats.intelligence}`,
+                    //                 `${item.results[0].powerstats.power}`,
+                    //                 `${item.results[0].powerstats.speed}`,
+                    //                 `${item.results[0].powerstats.strength}`
+                    //             ],
+                    //         }]
+                    //     },
+                    //     options: {
+                    //         scales: {
+                    //             xAxes: [{
+                    //                 gridLines: {
+                    //                     display: false,
+                    //                     drawBorder: false
+                    //                 },
+                    //                 ticks: {
+                    //                     beginAtZero: true
+                    //                 }
+                    //             }],
+                    //             yAxes: [{
+                    //                 gridLines: {
+                    //                     display: false,
+                    //                     drawBorder: false
+                    //                 }
+                    //             }]
+                    //         }
+                    //     }
+                    // }); // End of chart
 
 //                 });
 //             });
