@@ -71,7 +71,7 @@ app.getData = async function Data() {
                 <label for="${name.biography["full-name"]}2">${name.biography["full-name"]}</label>`
         );
     });
-
+// Comment
 app.displayhero = function (a, b) { // This is nothing, I was just testing passing the values as a parameter through functions. So we put in app.firstheroname and app.secondheroname as a and b. So below you can see
     console.log(a, b);
 }
