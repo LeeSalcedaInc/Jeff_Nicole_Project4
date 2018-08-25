@@ -73,9 +73,9 @@ app.submitEvent = function () {
 }
 // myChart1 begins here
 app.myChart = function(hero1, hero2){
-    let ctx = document.getElementById('myChart1').getContext('2d');
+    let ctx1 = document.getElementById('myChart1').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
-    let chart = new Chart(ctx, {
+    let chart1 = new Chart(ctx1, {
         type: 'horizontalBar',
         data: {
             labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
@@ -118,7 +118,56 @@ app.myChart = function(hero1, hero2){
                 }]
             }
         }
-    }); // End of chart
+    }); // End of chart1
+    // chart2 begins
+    // myChart2 begins here
+    let ctx2 = document.getElementById('myChart2').getContext('2d');
+    let chart2 = new Chart(ctx2, {
+        type: 'horizontalBar',
+        data: {
+            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+            datasets: [{
+                label: "Hero Stats",
+                borderColor: 'rgb(255, 99, 132)',
+                data: [
+                    `${hero2.results[0].powerstats.combat}`,
+                    `${hero2.results[0].powerstats.durability}`,
+                    `${hero2.results[0].powerstats.intelligence}`,
+                    `${hero2.results[0].powerstats.power}`,
+                    `${hero2.results[0].powerstats.speed}`,
+                    `${hero2.results[0].powerstats.strength}`
+                ],
+                backgroundColor: [
+                    "mediumblue",
+                    "lightsteelblue",
+                    "mediumblue",
+                    "lightsteelblue",
+                    "mediumblue",
+                    "lightsteelblue"
+                ],
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false,
+                        drawBorder: false
+                    }
+                }]
+            }
+        }
+    }); // End of Chart
+
 }
 
 // Comment
@@ -128,12 +177,12 @@ app.myChart = function(hero1, hero2){
         $('.stats1').css({
             'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero1.results[0].image.url}) no-repeat center`,
             'background-size': 'cover'
-        }).append(displayHeroName1);
+        }).prepend(displayHeroName1);
 
         $('.stats2').css({
             'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero2.results[0].image.url}) no-repeat center`,
             'background-size': 'cover'
-        }).append(displayHeroName2);
+        }).prepend(displayHeroName2);
     }
 
 
@@ -280,53 +329,53 @@ app.event = function () {
 //                     });
 //                     $('.stats2').prepend(displayHeroName);
 
-//                     // myChart2 begins here
-//                     let ctx = document.getElementById('myChart2').getContext('2d');
-//                     let chart = new Chart(ctx, {
-//                         type: 'horizontalBar',
-//                         data: {
-//                             labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
-//                             datasets: [{
-//                                 label: "Hero Stats",
-//                                 borderColor: 'rgb(255, 99, 132)',
-//                                 data: [
-//                                     `${item.results[0].powerstats.combat}`,
-//                                     `${item.results[0].powerstats.durability}`,
-//                                     `${item.results[0].powerstats.intelligence}`,
-//                                     `${item.results[0].powerstats.power}`,
-//                                     `${item.results[0].powerstats.speed}`,
-//                                     `${item.results[0].powerstats.strength}`
-//                                 ],
-//                                 backgroundColor: [
-//                                     "mediumblue",
-//                                     "lightsteelblue",
-//                                     "mediumblue",
-//                                     "lightsteelblue",
-//                                     "mediumblue",
-//                                     "lightsteelblue"
-//                                 ],
-//                             }]
-//                         },
-//                         options: {
-//                             scales: {
-//                                 xAxes: [{
-//                                     gridLines: {
-//                                         display: false,
-//                                         drawBorder: false
-//                                     },
-//                                     ticks: {
-//                                         beginAtZero: true
-//                                     }
-//                                 }],
-//                                 yAxes: [{
-//                                     gridLines: {
-//                                         display: false,
-//                                         drawBorder: false
-//                                     }
-//                                 }]
-//                             }
-//                         }
-//                     }); // End of Chart
+                    // // myChart2 begins here
+                    // let ctx = document.getElementById('myChart2').getContext('2d');
+                    // let chart = new Chart(ctx, {
+                    //     type: 'horizontalBar',
+                    //     data: {
+                    //         labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                    //         datasets: [{
+                    //             label: "Hero Stats",
+                    //             borderColor: 'rgb(255, 99, 132)',
+                    //             data: [
+                    //                 `${item.results[0].powerstats.combat}`,
+                    //                 `${item.results[0].powerstats.durability}`,
+                    //                 `${item.results[0].powerstats.intelligence}`,
+                    //                 `${item.results[0].powerstats.power}`,
+                    //                 `${item.results[0].powerstats.speed}`,
+                    //                 `${item.results[0].powerstats.strength}`
+                    //             ],
+                    //             backgroundColor: [
+                    //                 "mediumblue",
+                    //                 "lightsteelblue",
+                    //                 "mediumblue",
+                    //                 "lightsteelblue",
+                    //                 "mediumblue",
+                    //                 "lightsteelblue"
+                    //             ],
+                    //         }]
+                    //     },
+                    //     options: {
+                    //         scales: {
+                    //             xAxes: [{
+                    //                 gridLines: {
+                    //                     display: false,
+                    //                     drawBorder: false
+                    //                 },
+                    //                 ticks: {
+                    //                     beginAtZero: true
+                    //                 }
+                    //             }],
+                    //             yAxes: [{
+                    //                 gridLines: {
+                    //                     display: false,
+                    //                     drawBorder: false
+                    //                 }
+                    //             }]
+                    //         }
+                    //     }
+                    // }); // End of Chart
 //                 });
 //             });
 //     });
