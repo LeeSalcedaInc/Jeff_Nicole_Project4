@@ -4,8 +4,8 @@
 // making an object for namespacing
 const app = {}
 // making an empty array called characters
-let characters1 = [];
-let characters2 = [];
+app.characters1 = [];
+app.characters2 = [];
 
 // making our ajax request
 app.getHero1 = (name) => {
@@ -45,28 +45,35 @@ app.getHero2 = (name) => {
 // app.searchValue1 = characters1.push($('.hero1').val());
 // app.searchValue2 = characters2.push($('.hero2').val());
 
-async function getData() {
-    let firstHeroName = await characters1.map(app.getHero1)
-    let secondHeroName = await characters2.map(app.getHero2);
-    $.when(...firstHeroName)
-        .then((...responses) => {
-            responses.map((item) => {
-                console.log(item.results);
-            });
-        });        
-    $.when(...secondHeroName)
-        .then((...responses) => {
-            responses.map((item) => {
-                console.log(item.results);      
+
+
+
+app.getData = async function Data() {
+    app.firstHeroName = await app.getHero1(app.characters1); // Samething as before without the when and then and no errors
+    app.secondHeroName = await app.getHero2(app.characters2);
+    let heroObjects1 = app.firstHeroName.results; // All this is the same as we did before. We just have to add in the submit and radio buttons again. And then on that submit button, we can display both the stats and background images for both.
+    heroObjects1.forEach((name) => { 
+        console.log(name.biography["full-name"])
+        $('.speechText').empty();
+        $('.speechText1').text(`Which ${app.heroInput1} did you mean?`);
+        $('.speechList1').append(
+            `<input type="radio" name="${name.biography["full-name"]}" id="${name.biography["full-name"]}1">
+                <label for="${name.biography["full-name"]}1">${name.biography["full-name"]}</label>`
+        );
     });
-});
-}
+    let heroObjects2 = app.secondHeroName.results;
+    heroObjects2.forEach((name) => {
+        console.log(name.biography["full-name"])
+        $('.speechText').empty();
+        $('.speechText2').text(`Which ${app.heroInput2} did you mean?`);
+        $('.speechList2').append(
+            `<input type="radio" name="${name.biography["full-name"]}" id="${name.biography["full-name"]}2">
+                <label for="${name.biography["full-name"]}2">${name.biography["full-name"]}</label>`
+        );
+    });
 
-// getData();
-
-app.displaySpeechBubble = function () {
-    app.heroObjects = item.results;
-    console.log(app.heroObjects)
+app.displayhero = function (a, b) { // This is nothing, I was just testing passing the values as a parameter through functions. So we put in app.firstheroname and app.secondheroname as a and b. So below you can see
+    console.log(a, b);
 }
 
 app.event = function () {
@@ -74,13 +81,45 @@ app.event = function () {
         e.preventDefault();
         app.heroInput1 = $('.hero1').val().trim();
         app.heroInput2 = $('.hero2').val().trim();
-        app.searchValue1 = characters1.push($('.hero1').val());
-        app.searchValue2 = characters2.push($('.hero2').val());
-        getData();
-        app.displaySpeechBubble();
-        });
+        app.searchValue1 = app.characters1.push($('.hero1').val());
+        app.searchValue2 = app.characters2.push($('.hero2').val());
+        app.getData();
+        app.displayhero(app.firstHeroName, app.secondHeroName) // Passing them as a and b.....BUT IT DOESN'T WORK
+    });
+}   
+
+    
+
+//     $.when(...firstHeroName) 
+//         .then((...responses) => {
+//             responses.map((item1) => {
+//                 console.log(item1.results);
+//                 app.heroObjects1 = item1.results;
+//             });
+//         });        
+//     $.when(...secondHeroName)
+//         .then((...responses) => {
+//             responses.map((item2) => {
+//                 app.heroObjects2 = item2.results;   
+//     });
+// });
+}
+// app.displaySpeechBubble = function () {
+//     app.getData();
+//     console.log(app.firstHeroName)
+// }
+
+app.event = function () {
+    $('.searchHero').on('submit', function (e) {
+        e.preventDefault();
+        app.heroInput1 = $('.hero1').val().trim();
+        app.heroInput2 = $('.hero2').val().trim();
+        app.searchValue1 = app.characters1.push($('.hero1').val());
+        app.searchValue2 = app.characters2.push($('.hero2').val());
+        app.getData();
+    });
     }   
-// hello
+//
 
 
 // app.event = function () {
@@ -96,11 +135,11 @@ app.event = function () {
 //                 responses.map((item) => {
 //                     console.log(item.results);
 //                     // forEach iterates through heroObjects to find full-name
-//                     let heroObjects = item.results;
-//                     // let fullname = name.biography["full-name"];
-//                     let heroFullName = heroObjects.forEach((name) => {
+//                     ach((name) => {
 //                         console.log(name.biography["full-name"])
-//                         $('.speechText').empty();
+//                         $('.speechText').empty();let heroObjects = item.results;
+//                     // let fullname = name.biography["full-name"];
+//                     let heroFullName = heroObjects.forE
 //                         $('.speechText1').text(`Which ${item.results[0].name} did you mean?`);
 //                         $('.speechList1').append(
 //                             `<input type="radio" name="${name.biography["full-name"]}" id="${name.biography["full-name"]}1">
