@@ -14,9 +14,22 @@ header {
     background: url(../../assets/deadpool.jpg) bottom no-repeat;
     background-size: cover;
 }
+input[type=submit] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    font-family: $font-comic;
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
 .speech-bubble {
     position: relative;
-    top: -5%;
+    top: 0;
     right: 5%;
 	background: #fafff9;
     border-radius: 3rem;
@@ -52,19 +65,36 @@ header {
     .secondaryForm {
         display: flex;
         justify-content: space-between;
-        flex-direction: row;
-        align-items: flex-start;
-        .speechList1 {
-            width: 50%;
+        flex-direction: column;
+        align-items: center;
+        .speechContainer {
             display: flex;
-            flex-direction: column;
-            border: none;
+            justify-content: space-between;
+            flex-direction: row;
+            align-items: flex-start;
+            .speechList1 {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                border: none;
+            }
+            .speechList2 {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                border:none;
+            }
         }
-        .speechList2 {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            border:none;
+        input[type=submit].displayButton {
+            display: block;
+            width: 80%;
+            background: tomato;
+            &:hover {
+                background: #fae126;
+                border: solid 2px black;
+                color: black;
+            }
+
         }
     }
 }
@@ -92,20 +122,6 @@ h2 {
 .searchHero {
     text-align: center;
     width: 100%;
-}
-
-input[type=submit] {
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
-    width: 30%;
-    border: 2px solid white;
-    border-radius: 10px;
-    background: black;
-    color: white;
-    font-family: $font-comic;
-    font-size: 2rem;
-    letter-spacing: 3px;
 }
 
 input[type=search] {
