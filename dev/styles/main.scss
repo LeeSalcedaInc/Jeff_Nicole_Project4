@@ -16,7 +16,7 @@ header {
 }
 .speech-bubble {
     position: relative;
-    top: -10%;
+    top: -5%;
     right: 5%;
 	background: #fafff9;
     border-radius: 3rem;
@@ -45,20 +45,26 @@ header {
 	margin-bottom: -33px;
 }
 .speechListContainer {
-    display: flex;
-    justify-content: space-around;
-    align-items:center;
-    flex-direction: row;
-    .speechList1 {
+    .secondaryForm {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .fieldsetContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        .speechList1 {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+        .speechList2 {
         width: 50%;
         display: flex;
         flex-direction: column;
     }
-    .speechList2 {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-    }
+}   
 }
 
 section {
@@ -154,4 +160,8 @@ label {
 }
 input:checked + label {
     background: #fae16c;
+}
+fieldset {
+    border: none;
+    width: 100%;
 }
