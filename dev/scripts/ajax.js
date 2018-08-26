@@ -44,7 +44,9 @@ app.getHero2 = (name) => {
 app.displaySpeechBubble = function(hero1, hero2){
     if (hero1.results.length > 1 || hero2.results.length > 1) {
     let heroObjects1 = app.firstHeroName.results; 
-        heroObjects1.forEach((name) => { 
+        heroObjects1
+        .filter((name) => name.image.url.length > 2)
+        .forEach((name) => { 
             let fullname1 = name.biography["full-name"];
             $('.speechText').empty();
             $('.speechText1').text(`Which ${app.heroInput1} did you mean?`);
@@ -84,7 +86,56 @@ app.submitEvent = function (hero1, hero2) {
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject1[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName1);
-                    this.myChart1(hero1);
+                    let ctx1 = document.getElementById('myChart1').getContext('2d');
+                    Chart.defaults.global.defaultFontColor = 'white';
+                    let chart1 = new Chart(ctx1, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                            datasets: [{
+                                label: "Hero Stats",
+                                backgroundColor: [
+                                    'red',
+                                    'lightsteelblue',
+                                    'red',
+                                    'lightsteelblue',
+                                    'red',
+                                    'lightsteelblue'],
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [
+                                    `${hero1.results[i].powerstats.combat}`,
+                                    `${hero1.results[i].powerstats.durability}`,
+                                    `${hero1.results[i].powerstats.intelligence}`,
+                                    `${hero1.results[i].powerstats.power}`,
+                                    `${hero1.results[i].powerstats.speed}`,
+                                    `${hero1.results[i].powerstats.strength}`
+                                ],
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            scales: {
+                                xAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    }
+                                }]
+                            }
+                        }
+                    }); // End of chart1
+                    
                 }
             }
             for (var i = 0; i < hero2.results.length; i++) {
@@ -96,24 +147,59 @@ app.submitEvent = function (hero1, hero2) {
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject2[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName2);
-                    this.myChart2(hero2);
+                    let ctx1 = document.getElementById('myChart2').getContext('2d');
+                    Chart.defaults.global.defaultFontColor = 'white';
+                    let chart2 = new Chart(ctx1, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: ["Combat", "Durability", "Intelligence", "Power", "Speed", "Strength"],
+                            datasets: [{
+                                label: "Hero Stats",
+                                backgroundColor: [
+                                    'red',
+                                    'lightsteelblue',
+                                    'red',
+                                    'lightsteelblue',
+                                    'red',
+                                    'lightsteelblue'],
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: [
+                                    `${hero2.results[i].powerstats.combat}`,
+                                    `${hero2.results[i].powerstats.durability}`,
+                                    `${hero2.results[i].powerstats.intelligence}`,
+                                    `${hero2.results[i].powerstats.power}`,
+                                    `${hero2.results[i].powerstats.speed}`,
+                                    `${hero2.results[i].powerstats.strength}`
+                                ],
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            scales: {
+                                xAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    },
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                        drawBorder: false
+                                    }
+                                }]
+                            }
+                        }
+                    }); // End of chart1
                 }
             }
-            // for (var i = 0; i < hero2.results.length; i++) {
-            //     // if (hero1.results[i].biography["full-name"] == $('.firstHeroName input[radio][name=firstHeroName]:checked')) {
-            //     // return hero1.results[i]
-            //     app.theobject2 = hero2.results[i]
-            //     if (app.theobject2.biography["full-name"] == $('.secondHeroName input[radio][name=secondHeroName]:checked')) {
-            //         return app.theobject;
-            //     }
-            // }
         }
         console.log(app.getByValue(app.firstHeroName, app.secondHeroName));
-    
-        //     // if the input selected contains the same fullname, display the object's stats
-        // let heroAnswer1 = $('.firstHeroName input[radio][name=firstHeroName]:checked').val();
-        // let heroAnswer2 = $('.secondHeroName input[radio][name=secondHeroName]:checked').val();
-        // console.log(heroAnswer1, heroAnswer2);
         
     
 // this is where the input conditionals should be for diplaying the images below based on selection
@@ -121,6 +207,7 @@ app.submitEvent = function (hero1, hero2) {
 }
 // myChart1 begins here
 app.myChart1 = function(hero1){
+    
     let ctx1 = document.getElementById('myChart1').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
     let chart1 = new Chart(ctx1, {
