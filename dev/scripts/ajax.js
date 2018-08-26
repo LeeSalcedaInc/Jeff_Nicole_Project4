@@ -136,24 +136,10 @@ app.submitEvent = function (hero1, hero2) {
                                 ],
                             }]
                         },
-                        options: {
-                            legend: {
-                                display: false
-                            },
-                            scales: {
-                                xAxes: [{
-                                    gridLines: {
-                                        display: false,
-                                        drawBorder: false
-                                    },
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }],
-                                yAxes: [{
-                                    gridLines: {
-                                        display: false,
-                                        drawBorder: false
+                        options: { legend: { display: false},
+                            scales: { xAxes: [{ gridLines: { display: false, drawBorder: false},
+                                    ticks: { beginAtZero: true} }],
+                                    yAxes: [{ gridLines: { display: false, drawBorder: false
                                     }
                                 }]
                             }
@@ -208,24 +194,11 @@ app.submitEvent = function (hero1, hero2) {
                                 ],
                             }]
                         },
-                        options: {
-                            legend: {
-                                display: false
-                            },
-                            scales: {
-                                xAxes: [{
-                                    gridLines: {
-                                        display: false,
-                                        drawBorder: false
-                                    },
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }],
-                                yAxes: [{
-                                    gridLines: {
-                                        display: false,
-                                        drawBorder: false
+                        options: { legend: {
+                                display: false},
+                            scales: {xAxes: [{ gridLines: {display: false, drawBorder: false},
+                                    ticks: { beginAtZero: true }}],
+                                    yAxes: [{gridLines: {display: false, drawBorder: false
                                     }
                                 }]
                             }
@@ -246,17 +219,29 @@ app.submitEvent = function (hero1, hero2) {
                     console.log(app.total2)
                 }
 
-                if (app.total1 - app.total2 > 0) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} Period.`)
-                }
-                else if (app.total1 - app.total2 > 50) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+                if (app.total1 - app.total2 > 200) {
+                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
                 }
                 else if (app.total1 - app.total2 > 100) {
                     $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
                 }
-                else if (app.total1 - app.total2 > 200) {
-                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
+                else if (app.total1 - app.total2 > 50) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+                }
+                else if (app.total1 - app.total2 > 0) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+                }
+                else if (app.total2 - app.total1 > 200) {
+                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`)
+                }
+                else if (app.total2 - app.total1 > 100) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
+                }
+                else if (app.total2 - app.total1 > 50) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
+                }
+                else if (app.total2 - app.total1 > 0) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
                 }
             }
         }
@@ -294,24 +279,10 @@ app.myChart1 = function(hero1){
                 ],
             }]
         },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
+        options: {legend: { display: false},
+            scales: {xAxes: [{ gridLines: { display: false, drawBorder: false },
+                    ticks: { beginAtZero: true}}],
+                    yAxes: [{ gridLines: { display: false, drawBorder: false
                     }
                 }]
             }
@@ -360,24 +331,10 @@ app.myChart2 = function (hero2) {
                 ],
             }]
         },
-        options: {
-            legend: {
-                display: false
-            },
-            scales: {
-                xAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
-                    },
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }],
-                yAxes: [{
-                    gridLines: {
-                        display: false,
-                        drawBorder: false
+        options: { legend: { display: false},
+            scales: { xAxes: [{ gridLines: { display: false, drawBorder: false},
+                    ticks: {beginAtZero: true}}],
+                    yAxes: [{gridLines: {display: false, drawBorder: false
                     }
                 }]
             }
@@ -397,20 +354,31 @@ app.myChart2 = function (hero2) {
     app.total2 = num2.reduce(reducer2);
     console.log(app.total2)
 
-    if (app.total1 - app.total2 > 0) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
-    }
-    else if (app.total1 - app.total2 > 50) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+    if (app.total1 - app.total2 > 200) {
+        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
     }
     else if (app.total1 - app.total2 > 100) {
         $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
     }
-    else if (app.total1 - app.total2 > 200) {
-        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
+    else if (app.total1 - app.total2 > 50) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+    }
+    else if (app.total1 - app.total2 > 0 ) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+    }
+    else if (app.total2 - app.total1 > 200) {
+        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`)
+    }
+    else if (app.total2 - app.total1 > 100) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
+    }
+    else if (app.total2 - app.total1 > 50) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
+    }
+    else if (app.total2 - app.total1 > 0) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
     }
 }
-
 app.displayWinner = function(hero1, hero2){
     // if the input selected contains the same fullname, display the object's stats
     // let heroAnswer1 = $('.firstHeroName input[type = radio]:checked');
