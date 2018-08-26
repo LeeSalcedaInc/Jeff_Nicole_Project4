@@ -40,14 +40,16 @@ app.getHero2 = (name) => {
     })
 };
 
-app.displaySpeechBubble = function(){
+
+app.displaySpeechBubble = function(hero1, hero2){
+    if (hero1.results.length > 1 || hero2.results.length > 1) {
     let heroObjects1 = app.firstHeroName.results; 
         heroObjects1.forEach((name) => { 
             let fullname1 = name.biography["full-name"];
             $('.speechText').empty();
             $('.speechText1').text(`Which ${app.heroInput1} did you mean?`);
             $('.speechList1').append(
-                `<input class="firstHeroName" type="radio" name="firstHeroName" id="${fullname1}" value="${fullname1}" required>
+                `<input class="firstHeroName" type="radio" name="firstHeroName" id="${fullname1}" value="${fullname1}" data-name="${fullname1}" required>
                 <label for="${fullname1}">${fullname1}</label>`
             );
         });
@@ -57,7 +59,7 @@ app.displaySpeechBubble = function(){
             $('.speechText').empty();
             $('.speechText2').text(`Which ${app.heroInput2} did you mean?`);
             $('.speechList2').append(
-                `<input class="secondHeroName" type="radio" name="secondHeroName" id="${fullname2}" value="${fullname2}" required>
+                `<input class="secondHeroName" type="radio" name="secondHeroName" id="${fullname2}" value="${fullname2}" data-name="${fullname2}" required>
                 <label for="${fullname2}">${fullname2}</label>`
             );
         });
@@ -65,15 +67,51 @@ app.displaySpeechBubble = function(){
         `<input class="displayButton" type="submit" value="Show me ${app.heroInput1} VS ${app.heroInput2}">`
     );
 }
-app.submitEvent = function () {
+}
+
+
+
+app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
         e.preventDefault();
-       
-            // if the input selected contains the same fullname, display the object's stats
-        let heroAnswer1 = $('.firstHeroName input[radio][name=firstHeroName]:checked').val();
-        let heroAnswer2 = $('.secondHeroName input[radio][name=secondHeroName]:checked').val();
-        console.log(heroAnswer1, heroAnswer2);
-
+        app.getByValue = function (hero1, hero2) {
+            for (var i = 0; i < hero1.results.length; i++) {
+                app.theobject1 = hero1.results
+                if (app.theobject1[i].biography["full-name"] == ($("input[name=firstHeroName]:checked").data('name'))) {
+                    console.log(app.theobject1[i])
+                    const displayHeroName1 = `<h2 class="displayHeroName">${app.theobject1[i].name}</h2>`;
+                    $('.stats1').css({
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject1[i].image.url}) no-repeat center`,
+                        'background-size': 'cover'
+                    }).prepend(displayHeroName1);
+                }
+            }
+            for (var i = 0; i < hero2.results.length; i++) {
+                app.theobject2 = hero2.results
+                if (app.theobject2[i].biography["full-name"] == ($("input[name=secondHeroName]:checked").data('name'))) {
+                    console.log(app.theobject2[i])
+                    const displayHeroName2 = `<h2 class="displayHeroName">${app.theobject2[i].name}</h2>`;
+                    $('.stats2').css({
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject2[i].image.url}) no-repeat center`,
+                        'background-size': 'cover'
+                    }).prepend(displayHeroName2);
+                }
+            }
+            // for (var i = 0; i < hero2.results.length; i++) {
+            //     // if (hero1.results[i].biography["full-name"] == $('.firstHeroName input[radio][name=firstHeroName]:checked')) {
+            //     // return hero1.results[i]
+            //     app.theobject2 = hero2.results[i]
+            //     if (app.theobject2.biography["full-name"] == $('.secondHeroName input[radio][name=secondHeroName]:checked')) {
+            //         return app.theobject;
+            //     }
+            // }
+        }
+        console.log(app.getByValue(app.firstHeroName, app.secondHeroName));
+    
+        //     // if the input selected contains the same fullname, display the object's stats
+        // let heroAnswer1 = $('.firstHeroName input[radio][name=firstHeroName]:checked').val();
+        // let heroAnswer2 = $('.secondHeroName input[radio][name=secondHeroName]:checked').val();
+        // console.log(heroAnswer1, heroAnswer2);
         
     
 // this is where the input conditionals should be for diplaying the images below based on selection
@@ -81,6 +119,7 @@ app.submitEvent = function () {
 }
 // myChart1 begins here
 app.myChart = function(hero1, hero2){
+    if (hero1.results.length < 2 && hero2.results.length < 2) {
     let ctx1 = document.getElementById('myChart1').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
     let chart1 = new Chart(ctx1, {
@@ -108,6 +147,9 @@ app.myChart = function(hero1, hero2){
             }]
         },
         options: {
+            legend: {
+                display: false
+            },
             scales: {
                 xAxes: [{
                     gridLines: {
@@ -156,6 +198,9 @@ app.myChart = function(hero1, hero2){
             }]
         },
         options: {
+            legend: {
+                display: false
+            },
             scales: {
                 xAxes: [{
                     gridLines: {
@@ -176,12 +221,14 @@ app.myChart = function(hero1, hero2){
         }
     }); // End of Chart
 }
+}
 app.displayWinner = function(hero1, hero2){
     // if the input selected contains the same fullname, display the object's stats
     // let heroAnswer1 = $('.firstHeroName input[type = radio]:checked');
     // console.log(heroAnswer1);
 }
 app.displayHero = function (hero1, hero2) { 
+    if (hero1.results.length < 2 && hero2.results.length < 2) {
     const displayHeroName1 = `<h2 class="displayHeroName">${app.firstHeroName.results[0].name}</h2>`;
     const displayHeroName2 = `<h2 class="displayHeroName">${app.secondHeroName.results[0].name}</h2>`
     $('.stats1').css({
@@ -194,15 +241,17 @@ app.displayHero = function (hero1, hero2) {
         'background-size': 'cover'
     }).prepend(displayHeroName2);
 }
+}
 
 
     app.getData = async function Data() {
         app.firstHeroName = await app.getHero1(app.characters1); 
+        console.log(app.firstHeroName)
         app.secondHeroName = await app.getHero2(app.characters2);
         app.displayHero(app.firstHeroName, app.secondHeroName);
         app.myChart(app.firstHeroName, app.secondHeroName);
         app.displayWinner(app.firstHeroName, app.secondHeroName, app.myChart);
-        app.displaySpeechBubble();
+        app.displaySpeechBubble(app.firstHeroName, app.secondHeroName);
         app.submitEvent();
     
         
