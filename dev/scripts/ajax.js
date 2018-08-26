@@ -84,6 +84,7 @@ app.submitEvent = function (hero1, hero2) {
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject1[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName1);
+                    this.myChart1(hero1);
                 }
             }
             for (var i = 0; i < hero2.results.length; i++) {
@@ -95,6 +96,7 @@ app.submitEvent = function (hero1, hero2) {
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject2[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName2);
+                    this.myChart2(hero2);
                 }
             }
             // for (var i = 0; i < hero2.results.length; i++) {
@@ -118,8 +120,7 @@ app.submitEvent = function (hero1, hero2) {
     });
 }
 // myChart1 begins here
-app.myChart = function(hero1, hero2){
-    if (hero1.results.length < 2 && hero2.results.length < 2) {
+app.myChart1 = function(hero1){
     let ctx1 = document.getElementById('myChart1').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
     let chart1 = new Chart(ctx1, {
@@ -169,8 +170,10 @@ app.myChart = function(hero1, hero2){
             }
         }
     }); // End of chart1
+}
     // chart2 begins
     // myChart2 begins here
+app.myChart2 = function (hero2) {    
     let ctx2 = document.getElementById('myChart2').getContext('2d');
     let chart2 = new Chart(ctx2, {
         type: 'horizontalBar',
@@ -221,7 +224,7 @@ app.myChart = function(hero1, hero2){
         }
     }); // End of Chart
 }
-}
+
 app.displayWinner = function(hero1, hero2){
     // if the input selected contains the same fullname, display the object's stats
     // let heroAnswer1 = $('.firstHeroName input[type = radio]:checked');
@@ -249,7 +252,10 @@ app.displayHero = function (hero1, hero2) {
         console.log(app.firstHeroName)
         app.secondHeroName = await app.getHero2(app.characters2);
         app.displayHero(app.firstHeroName, app.secondHeroName);
-        app.myChart(app.firstHeroName, app.secondHeroName);
+        if (app.firstHeroName.results.length < 2 && app.secondHeroName.results.length < 2) {
+            this.myChart1(app.firstHeroName);
+            this.myChart2(app.secondHeroName);
+        }
         app.displayWinner(app.firstHeroName, app.secondHeroName, app.myChart);
         app.displaySpeechBubble(app.firstHeroName, app.secondHeroName);
         app.submitEvent();
