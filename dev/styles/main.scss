@@ -13,6 +13,16 @@ header {
     height: 100vh;
     background: url(../../assets/deadpool.jpg) bottom no-repeat;
     background-size: cover;
+    @include breakPoint(break2){
+        background: url(../../assets/deadpool-responsive.jpg) center no-repeat;
+    }
+    h1 {
+    font-size: 60px;
+    font-family: $font-comic;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 0;
+    }
 }
 input[type=submit] {
     display: block;
@@ -30,7 +40,7 @@ input[type=submit] {
 .speech-bubble {
     position: relative;
     top: 0;
-    right: 5%;
+    right: 10%;
 	background: #fafff9;
     border-radius: 3rem;
     width: 60%;
@@ -40,28 +50,28 @@ input[type=submit] {
     word-spacing: 1.3px;
     padding: 1rem;
     border: black solid 5px;
-
+    @include breakPoint(break6){
+        right: 5%;
+        width: 80%;
+    }
+    .speech-bubble:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 95%;
+        width: 0;
+        height: 0;
+        border: 33px solid transparent;
+        border-top-color: black;
+        border-bottom: 0;
+        border-right: 0;
+        margin-left: -16.5px;
+        margin-bottom: -33px;
+    }
 }
 
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 95%;
-	width: 0;
-	height: 0;
-	border: 33px solid transparent;
-	border-top-color: black;
-	border-bottom: 0;
-	border-right: 0;
-	margin-left: -16.5px;
-	margin-bottom: -33px;
-}
+
 .speechListContainer {
-    // display: flex;
-    // justify-content: space-around;
-    // align-items:center;
-    // flex-direction: row;
     .secondaryForm {
         display: flex;
         justify-content: space-between;
@@ -132,14 +142,6 @@ input[type=search] {
     border: black solid 2px;
     margin: 20px 0;
     box-shadow: 5px 5px 5px gray;
-}
-
-h1 {
-   font-size: 60px;
-   font-family: $font-comic;
-   letter-spacing: 5px;
-   text-align: center;
-   margin: 0;
 }
 
 img {
