@@ -7,6 +7,8 @@ const app = {}
 app.characters1 = [];
 app.characters2 = [];
 
+app.emptyarray1 = [];
+app.emptyarray2 = [];
 
 // making our ajax request
 app.getHero1 = (name) => {
@@ -39,6 +41,10 @@ app.getHero2 = (name) => {
         }
     })
 };
+
+app.displayMessage = function (hero1, hero2) {
+    console.log(app.uniqueHeroObjects1)
+}
 
 
 app.displaySpeechBubble = function(hero1, hero2){
@@ -153,7 +159,19 @@ app.submitEvent = function (hero1, hero2) {
                             }
                         }
                     }); // End of chart1
-                    
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.combat);
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.durability);
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.intelligence);
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.power);
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.speed);
+                app.emptyarray1.push(app.uniqueHeroObjects1[i].powerstats.strength);
+                let num1 = app.emptyarray1.map(function (x) {
+                    return parseInt(x, 10);
+                });
+                console.log(num1)
+                const reducer1 = (add, total) => add + total;
+                app.total1 = num1.reduce(reducer1);
+                console.log(app.total1)
                 }
             }
             for (var i = 0; i < app.uniqueHeroObjects2.length; i++) {
@@ -213,6 +231,32 @@ app.submitEvent = function (hero1, hero2) {
                             }
                         }
                     }); // End of chart1
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.combat)
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.durability)
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.intelligence)
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.power)
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.speed)
+                    app.emptyarray2.push(app.uniqueHeroObjects2[i].powerstats.strength)
+                    let num2 = app.emptyarray2.map(function (x) {
+                        return parseInt(x, 10);
+                    });
+                    console.log(num2)
+                    const reducer2 = (add, total) => add + total;
+                    app.total2 = num2.reduce(reducer2);
+                    console.log(app.total2)
+                }
+
+                if (app.total1 - app.total2 > 0) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} Period.`)
+                }
+                else if (app.total1 - app.total2 > 50) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+                }
+                else if (app.total1 - app.total2 > 100) {
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
+                }
+                else if (app.total1 - app.total2 > 200) {
+                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
                 }
             }
         }
@@ -224,7 +268,6 @@ app.submitEvent = function (hero1, hero2) {
 }
 // myChart1 begins here
 app.myChart1 = function(hero1){
-    
     let ctx1 = document.getElementById('myChart1').getContext('2d');
     Chart.defaults.global.defaultFontColor = 'white';
     let chart1 = new Chart(ctx1, {
@@ -274,6 +317,19 @@ app.myChart1 = function(hero1){
             }
         }
     }); // End of chart1
+    app.emptyarray1.push(hero1.results[0].powerstats.combat);
+    app.emptyarray1.push(hero1.results[0].powerstats.durability);
+    app.emptyarray1.push(hero1.results[0].powerstats.intelligence);
+    app.emptyarray1.push(hero1.results[0].powerstats.power);
+    app.emptyarray1.push(hero1.results[0].powerstats.speed);
+    app.emptyarray1.push(hero1.results[0].powerstats.strength);
+    let num1 = app.emptyarray1.map(function (x) {
+        return parseInt(x, 10);
+    });
+    console.log(num1)
+    const reducer1 = (add, total) => add + total;
+    app.total1 = num1.reduce(reducer1);
+    console.log(app.total1)
 }
     // chart2 begins
     // myChart2 begins here
@@ -327,6 +383,32 @@ app.myChart2 = function (hero2) {
             }
         }
     }); // End of Chart
+    app.emptyarray2.push(hero2.results[0].powerstats.combat);
+    app.emptyarray2.push(hero2.results[0].powerstats.durability);
+    app.emptyarray2.push(hero2.results[0].powerstats.intelligence);
+    app.emptyarray2.push(hero2.results[0].powerstats.power);
+    app.emptyarray2.push(hero2.results[0].powerstats.speed);
+    app.emptyarray2.push(hero2.results[0].powerstats.strength);
+    let num2 = app.emptyarray2.map(function (x) {
+        return parseInt(x, 10);
+    });
+    console.log(num2)
+    const reducer2 = (add, total) => add + total;
+    app.total2 = num2.reduce(reducer2);
+    console.log(app.total2)
+
+    if (app.total1 - app.total2 > 0) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+    }
+    else if (app.total1 - app.total2 > 50) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+    }
+    else if (app.total1 - app.total2 > 100) {
+        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
+    }
+    else if (app.total1 - app.total2 > 200) {
+        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
+    }
 }
 
 app.displayWinner = function(hero1, hero2){
@@ -350,7 +432,22 @@ app.displayHero = function (hero1, hero2) {
 }
 }
 
+app.totalstats = function (hero1) {
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.combat)
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.durability)
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.intelligence)
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.power)
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.speed)
+    app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.strength)
+    let num = app.emptyarray.map(function (x) {
+        return parseInt(x, 10);
+    });
+    console.log(num)
+    const reducer = (add, total) => add + total;
+    let total = num.reduce(reducer);
+    console.log(total)
 
+}
     app.getData = async function Data() {
         app.firstHeroName = await app.getHero1(app.characters1); 
         console.log(app.firstHeroName)
