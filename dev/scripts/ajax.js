@@ -43,10 +43,19 @@ app.getHero2 = (name) => {
 
 app.displaySpeechBubble = function(hero1, hero2){
     if (hero1.results.length > 1 || hero2.results.length > 1) {
-    let heroObjects1 = app.firstHeroName.results; 
-        heroObjects1
-        .filter((name) => name.image.url.length > 2)
-        .forEach((name) => { 
+    let heroObjects1 = app.firstHeroName.results;
+    let dup1array = [];
+    app.uniqueHeroObjects1 = heroObjects1.filter(function(array) {
+        if (dup1array.indexOf(array.biography["full-name"]) == -1) {
+            dup1array.push(array.biography["full-name"]);
+            return true;
+        }
+        return false;
+
+    });
+    console.log(app.uniqueHeroObjects1);
+
+    app.uniqueHeroObjects1.forEach((name) => { 
             let fullname1 = name.biography["full-name"];
             $('.speechText').empty();
             $('.speechText1').text(`Which ${app.heroInput1} did you mean?`);
@@ -56,7 +65,17 @@ app.displaySpeechBubble = function(hero1, hero2){
             );
         });
     let heroObjects2 = app.secondHeroName.results;
-        heroObjects2.forEach((name) => {
+    let dup2array = [];
+    app.uniqueHeroObjects2 = heroObjects2.filter(function (array) {
+        if (dup2array.indexOf(array.biography["full-name"]) == -1) {
+            dup2array.push(array.biography["full-name"]);
+            return true;
+        }
+        return false;
+
+    });
+    console.log(app.uniqueHeroObjects2);
+        app.uniqueHeroObjects2.forEach((name) => {
             let fullname2 = name.biography["full-name"];
             $('.speechText').empty();
             $('.speechText2').text(`Which ${app.heroInput2} did you mean?`);
@@ -76,14 +95,13 @@ app.displaySpeechBubble = function(hero1, hero2){
 app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
         e.preventDefault();
-        app.getByValue = function (hero1, hero2) {
-            for (var i = 0; i < hero1.results.length; i++) {
-                app.theobject1 = hero1.results
-                if (app.theobject1[i].biography["full-name"] == ($("input[name=firstHeroName]:checked").data('name'))) {
-                    console.log(app.theobject1[i])
-                    const displayHeroName1 = `<h2 class="displayHeroName">${app.theobject1[i].name}</h2>`;
+        app.getByValue = function () {
+            for (var i = 0; i < app.uniqueHeroObjects1.length; i++) {
+                if (app.uniqueHeroObjects1[i].biography["full-name"] == ($("input[name=firstHeroName]:checked").data('name'))) {
+                    console.log(app.uniqueHeroObjects1[i])
+                    const displayHeroName1 = `<h2 class="displayHeroName">${app.uniqueHeroObjects1[i].name}</h2>`;
                     $('.stats1').css({
-                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject1[i].image.url}) no-repeat center`,
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.uniqueHeroObjects1[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName1);
                     let ctx1 = document.getElementById('myChart1').getContext('2d');
@@ -103,12 +121,12 @@ app.submitEvent = function (hero1, hero2) {
                                     'lightsteelblue'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [
-                                    `${hero1.results[i].powerstats.combat}`,
-                                    `${hero1.results[i].powerstats.durability}`,
-                                    `${hero1.results[i].powerstats.intelligence}`,
-                                    `${hero1.results[i].powerstats.power}`,
-                                    `${hero1.results[i].powerstats.speed}`,
-                                    `${hero1.results[i].powerstats.strength}`
+                                    `${app.uniqueHeroObjects1[i].powerstats.combat}`,
+                                    `${app.uniqueHeroObjects1[i].powerstats.durability}`,
+                                    `${app.uniqueHeroObjects1[i].powerstats.intelligence}`,
+                                    `${app.uniqueHeroObjects1[i].powerstats.power}`,
+                                    `${app.uniqueHeroObjects1[i].powerstats.speed}`,
+                                    `${app.uniqueHeroObjects1[i].powerstats.strength}`
                                 ],
                             }]
                         },
@@ -138,13 +156,12 @@ app.submitEvent = function (hero1, hero2) {
                     
                 }
             }
-            for (var i = 0; i < hero2.results.length; i++) {
-                app.theobject2 = hero2.results
-                if (app.theobject2[i].biography["full-name"] == ($("input[name=secondHeroName]:checked").data('name'))) {
-                    console.log(app.theobject2[i])
-                    const displayHeroName2 = `<h2 class="displayHeroName">${app.theobject2[i].name}</h2>`;
+            for (var i = 0; i < app.uniqueHeroObjects2.length; i++) {
+                if (app.uniqueHeroObjects2[i].biography["full-name"] == ($("input[name=secondHeroName]:checked").data('name'))) {
+                    console.log(app.uniqueHeroObjects2[i])
+                    const displayHeroName2 = `<h2 class="displayHeroName">${app.uniqueHeroObjects2[i].name}</h2>`;
                     $('.stats2').css({
-                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.theobject2[i].image.url}) no-repeat center`,
+                        'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.uniqueHeroObjects2[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
                     }).prepend(displayHeroName2);
                     let ctx1 = document.getElementById('myChart2').getContext('2d');
@@ -164,12 +181,12 @@ app.submitEvent = function (hero1, hero2) {
                                     'lightsteelblue'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [
-                                    `${hero2.results[i].powerstats.combat}`,
-                                    `${hero2.results[i].powerstats.durability}`,
-                                    `${hero2.results[i].powerstats.intelligence}`,
-                                    `${hero2.results[i].powerstats.power}`,
-                                    `${hero2.results[i].powerstats.speed}`,
-                                    `${hero2.results[i].powerstats.strength}`
+                                    `${app.uniqueHeroObjects2[i].powerstats.combat}`,
+                                    `${app.uniqueHeroObjects2[i].powerstats.durability}`,
+                                    `${app.uniqueHeroObjects2[i].powerstats.intelligence}`,
+                                    `${app.uniqueHeroObjects2[i].powerstats.power}`,
+                                    `${app.uniqueHeroObjects2[i].powerstats.speed}`,
+                                    `${app.uniqueHeroObjects2[i].powerstats.strength}`
                                 ],
                             }]
                         },
