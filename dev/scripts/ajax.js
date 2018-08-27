@@ -61,10 +61,10 @@ app.displaySpeechBubble = function(hero1, hero2){
     });
     console.log(app.uniqueHeroObjects1);
 
-    app.uniqueHeroObjects1.forEach((name) => { 
+    $('.speechList1, .speechText').empty(); 
+    $('.speechList1').append(`<p class="speechText1">Which ${app.heroInput1} did you mean?</p>`); // Emptying it outside the ForEach function so it doesn't repeat
+    app.uniqueHeroObjects1.forEach((name) => {
             let fullname1 = name.biography["full-name"];
-            $('.speechText').empty();
-            $('.speechText1').text(`Which ${app.heroInput1} did you mean?`);
             $('.speechList1').append(
                 `<input class="firstHeroName" type="radio" name="firstHeroName" id="${fullname1}" value="${fullname1}" data-name="${fullname1}" required>
                 <label for="${fullname1}">${fullname1}</label>`
@@ -81,16 +81,17 @@ app.displaySpeechBubble = function(hero1, hero2){
 
     });
     console.log(app.uniqueHeroObjects2);
+        $('.speechList2, speechText').empty();
+        $('.speechList2').append(`<p class="speechText2">Which ${app.heroInput2} did you mean?</p>`); // Emptying it outside the ForEach function so it doesn't repeat
+        $('.secondbutton').empty();
         app.uniqueHeroObjects2.forEach((name) => {
             let fullname2 = name.biography["full-name"];
-            $('.speechText').empty();
-            $('.speechText2').text(`Which ${app.heroInput2} did you mean?`);
             $('.speechList2').append(
                 `<input class="secondHeroName" type="radio" name="secondHeroName" id="${fullname2}" value="${fullname2}" data-name="${fullname2}" required>
                 <label for="${fullname2}">${fullname2}</label>`
-            );
+            )
         });
-    $('.secondaryForm').append(
+    $('.secondbutton').append(
         `<input class="displayButton" type="submit" value="Show me ${app.heroInput1} VS ${app.heroInput2}">`
     );
 }
@@ -100,11 +101,15 @@ app.displaySpeechBubble = function(hero1, hero2){
 
 app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
+        $('.stats1').empty();
+        $('.stats2').empty();
         e.preventDefault();
         // results scroll
         $('html, body').animate({
             scrollTop: $('#finalResults').offset().top
         }, 1000);
+        const canvas1 = $('<canvas>').attr('id', 'myChart1');
+        const canvas2 = $('<canvas>').attr('id', 'myChart2')
         app.getByValue = function () {
             for (var i = 0; i < app.uniqueHeroObjects1.length; i++) {
                 if (app.uniqueHeroObjects1[i].biography["full-name"] == ($("input[name=firstHeroName]:checked").data('name'))) {
@@ -113,7 +118,7 @@ app.submitEvent = function (hero1, hero2) {
                     $('.stats1').css({
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.uniqueHeroObjects1[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
-                    }).prepend(displayHeroName1);
+                    }).prepend(displayHeroName1).append(canvas1);
                     let ctx1 = document.getElementById('myChart1').getContext('2d');
                     Chart.defaults.global.defaultFontColor = 'white';
                     let chart1 = new Chart(ctx1, {
@@ -171,7 +176,7 @@ app.submitEvent = function (hero1, hero2) {
                     $('.stats2').css({
                         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${app.uniqueHeroObjects2[i].image.url}) no-repeat center`,
                         'background-size': 'cover'
-                    }).prepend(displayHeroName2);
+                    }).prepend(displayHeroName2).append(canvas2);
                     let ctx1 = document.getElementById('myChart2').getContext('2d');
                     Chart.defaults.global.defaultFontColor = 'white';
                     let chart2 = new Chart(ctx1, {
@@ -181,11 +186,11 @@ app.submitEvent = function (hero1, hero2) {
                             datasets: [{
                                 label: "Hero Stats",
                                 backgroundColor: [
-                                    'rgba(205,92,92,0.8)',
+                                    "rgba(0,0,205,0.5)",
                                     'rgba(176,196,222,0.8)',
-                                    'rgba(205,92,92,0.8)',
+                                    "rgba(0,0,205,0.5)",
                                     'rgba(176,196,222,0.8)',
-                                    'rgba(205,92,92,0.8)',
+                                    "rgba(0,0,205,0.5)",
                                     'rgba(176,196,222,0.8)'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [
@@ -224,7 +229,7 @@ app.submitEvent = function (hero1, hero2) {
                 }
 // message results display
                 if (app.total1 - app.total2 > 200) {
-                    $('h1.resultsText').text(`Even Jeff can beat up ${app.heroInput2}.`);
+                    $('h1.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput2}.`);
                 }
                 else if (app.total1 - app.total2 > 100) {
                     $('h1.resultsText').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`);
@@ -236,7 +241,7 @@ app.submitEvent = function (hero1, hero2) {
                     $('h1.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`);
                 }
                 else if (app.total2 - app.total1 > 200) {
-                    $('h1.resultsText').text(`Even Jeff can beat up ${app.heroInput1}.`);
+                    $('h1.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput1}.`);
                 }
                 else if (app.total2 - app.total1 > 100) {
                     $('h1.resultsText').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`);
@@ -298,7 +303,6 @@ app.myChart1 = function(hero1){
     let num1 = app.emptyarray1.map(function (x) {
         return parseInt(x, 10);
     });
-    console.log(num1)
     const reducer1 = (add, total) => add + total;
     app.total1 = num1.reduce(reducer1);
     console.log(app.total1)
@@ -355,7 +359,7 @@ app.myChart2 = function (hero2) {
     console.log(app.total2)
 
     if (app.total1 - app.total2 > 200) {
-        $('.resultsText').text(`Even Jeff can beat up ${app.heroInput2}.`)
+        $('.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput2}.`)
     }
     else if (app.total1 - app.total2 > 100) {
         $('.resultsText').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
@@ -367,7 +371,7 @@ app.myChart2 = function (hero2) {
         $('.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
     }
     else if (app.total2 - app.total1 > 200) {
-        $('.resultsText').text(`Even Jeff can beat up ${app.heroInput1}.`)
+        $('.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput1}.`)
     }
     else if (app.total2 - app.total1 > 100) {
         $('.resultsText').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
@@ -381,17 +385,21 @@ app.myChart2 = function (hero2) {
 }
 app.displayHero = function (hero1, hero2) { 
     if (hero1.results.length < 2 && hero2.results.length < 2) {
+    $('.stats1').empty();
+    $('.stats2').empty();
     const displayHeroName1 = `<h2 class="displayHeroName">${app.firstHeroName.results[0].name}</h2>`;
     const displayHeroName2 = `<h2 class="displayHeroName">${app.secondHeroName.results[0].name}</h2>`
+    const canvas1 = $('<canvas>').attr('id', 'myChart1')
+    const canvas2 = $('<canvas>').attr('id', 'myChart2')
     $('.stats1').css({
         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero1.results[0].image.url}) no-repeat center`,
         'background-size': 'cover'
-    }).prepend(displayHeroName1);
+    }).prepend(displayHeroName1).append(canvas1);
 
     $('.stats2').css({
         'background': `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero2.results[0].image.url}) no-repeat center`,
         'background-size': 'cover'
-    }).prepend(displayHeroName2);
+    }).prepend(displayHeroName2).append(canvas2);
 }
 }
 app.totalstats = function (hero1) {
@@ -418,6 +426,9 @@ app.getData = async function Data() {
     if (app.firstHeroName.results.length < 2 && app.secondHeroName.results.length < 2) {
         this.myChart1(app.firstHeroName);
         this.myChart2(app.secondHeroName);
+        $('html, body').animate({
+            scrollTop: $('#finalResults').offset().top
+        }, 1000);
     }
     app.displaySpeechBubble(app.firstHeroName, app.secondHeroName);
     app.submitEvent();
@@ -427,16 +438,12 @@ app.getData = async function Data() {
 app.event = function () {
     $('.searchHero').on('submit', function (e) {
         e.preventDefault();
-        // if (hero1.results.length < 2 && hero2.results.length < 2) {
-        //     $('html, body').animate({
-        //         scrollTop: $('#finalResults').offset().top
-        //     }, 1000);
-        // }
+        app.characters1 = [];
+        app.characters2 = [];
         app.heroInput1 = $('.hero1').val().trim();
         app.heroInput2 = $('.hero2').val().trim();
         app.searchValue1 = app.characters1.push($('.hero1').val());
         app.searchValue2 = app.characters2.push($('.hero2').val());
-     
         app.getData();
     });
 }  
