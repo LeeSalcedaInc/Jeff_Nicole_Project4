@@ -12,9 +12,7 @@ body, p, h1, h2 {
 img {
    max-width: 100%;
 }
-section {
-    height: 100vh;
-}
+
 h2 {
     color: seashell;
     font-family: $font-comic;
@@ -69,15 +67,19 @@ input[type=submit] {
     word-spacing: 1.3px;
     padding: 1rem;
     border: black solid 5px;
-    @include breakPoint(break6){
-        right: 5%;
-        width: 85%;
+    @include breakPoint(break2){
         font-size: 1.5rem;
     }
     @include breakPoint(break5){
         width: 88%;
         right: 0;
     }
+    @include breakPoint(break6){
+        right: 2%;
+        width: 95%;
+        font-size: 1.5rem;
+    }
+
 
 }
  .speech-bubble:after {
@@ -140,6 +142,9 @@ input[type=submit] {
             @include breakPoint(break4){
                 width: 90%;
             }
+            @include breakPoint(break6){
+                width: 95%;
+            }
         }
     }
 }
@@ -166,14 +171,19 @@ input[type=submit] {
         border-radius: 5px;
         font-size: 2rem;
         border: black solid 2px;
-        margin: 2rem 0;
+        margin: 1rem 0;
         box-shadow: 5px 5px 5px gray;
         @include breakPoint(break2){
             width: 80%;
         }  
         @include breakPoint(break5){
-            margin: 1rem;
+            margin: 0.5rem;
         } 
+        @include breakPoint(break6){
+            font-size: 1.4rem;
+            margin: 0.2rem;
+            padding: 1rem;
+        }
     }
     input[type=submit] {
         @include breakPoint(break6){
@@ -201,7 +211,7 @@ input[type=submit] {
           height: 100vh;
       }
       #myChart1, #myChart2 {
-          padding: 0 5rem;
+          padding: 0 4rem;
           @include breakPoint(break6){
               width: 80%;
           }
@@ -210,10 +220,14 @@ input[type=submit] {
 }
 .heroResults {
     background: #fae16c;
-    h1 {
+    .resultsText {
         font-size: 5rem;
         font-family: $font-main;
-        color: pink;
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        width: 60%;
+        text-align: left;
+        margin-left: 2rem;
     }
 }
 

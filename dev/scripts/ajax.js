@@ -123,12 +123,12 @@ app.submitEvent = function (hero1, hero2) {
                             datasets: [{
                                 label: "Hero Stats",
                                 backgroundColor: [
-                                    'red',
-                                    'lightsteelblue',
-                                    'red',
-                                    'lightsteelblue',
-                                    'red',
-                                    'lightsteelblue'],
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)',
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)',
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [
                                     `${app.uniqueHeroObjects1[i].powerstats.combat}`,
@@ -181,12 +181,12 @@ app.submitEvent = function (hero1, hero2) {
                             datasets: [{
                                 label: "Hero Stats",
                                 backgroundColor: [
-                                    'red',
-                                    'lightsteelblue',
-                                    'red',
-                                    'lightsteelblue',
-                                    'red',
-                                    'lightsteelblue'],
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)',
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)',
+                                    'rgba(205,92,92,0.8)',
+                                    'rgba(176,196,222,0.8)'],
                                 borderColor: 'rgb(255, 99, 132)',
                                 data: [
                                     `${app.uniqueHeroObjects2[i].powerstats.combat}`,
@@ -222,30 +222,30 @@ app.submitEvent = function (hero1, hero2) {
                     app.total2 = num2.reduce(reducer2);
                     console.log(app.total2)
                 }
-
+// message results display
                 if (app.total1 - app.total2 > 200) {
-                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`);
+                    $('h1.resultsText').text(`Even Jeff can beat up ${app.heroInput2}.`);
                 }
                 else if (app.total1 - app.total2 > 100) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`);
+                    $('h1.resultsText').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`);
                 }
                 else if (app.total1 - app.total2 > 50) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`);
+                    $('h1.resultsText').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`);
                 }
                 else if (app.total1 - app.total2 > 0) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`);
+                    $('h1.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`);
                 }
                 else if (app.total2 - app.total1 > 200) {
-                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`);
+                    $('h1.resultsText').text(`Even Jeff can beat up ${app.heroInput1}.`);
                 }
                 else if (app.total2 - app.total1 > 100) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`);
+                    $('h1.resultsText').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`);
                 }
                 else if (app.total2 - app.total1 > 50) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`);
+                    $('h1.resultsText').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`);
                 }
                 else if (app.total2 - app.total1 > 0) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`);
+                    $('h1.resultsText').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`);
                 }
             }
         }
@@ -263,12 +263,12 @@ app.myChart1 = function(hero1){
             datasets: [{
                 label: "Hero Stats",
                 backgroundColor: [
-                    'red',
-                    'lightsteelblue',
-                    'red',
-                    'lightsteelblue',
-                    'red',
-                    'lightsteelblue'],
+                    'rgba(205,92,92,0.8)',
+                    'rgba(176,196,222,0.8)',
+                    'rgba(205,92,92,0.8)',
+                    'rgba(176,196,222,0.8)',
+                    'rgba(205,92,92,0.8)',
+                    'rgba(176,196,222,0.8)'],
                 borderColor: 'rgb(255, 99, 132)',
                 data: [
                     `${hero1.results[0].powerstats.combat}`,
@@ -322,12 +322,12 @@ app.myChart2 = function (hero2) {
                     `${hero2.results[0].powerstats.strength}`
                 ],
                 backgroundColor: [
-                    "mediumblue",
-                    "lightsteelblue",
-                    "mediumblue",
-                    "lightsteelblue",
-                    "mediumblue",
-                    "lightsteelblue"
+                    "rgba(0,0,205,0.5)",
+                    "rgba(176,196,222,0.8)",
+                    "rgba(0,0,205,0.5)",
+                    "rgba(176,196,222,0.8)",
+                    "rgba(0,0,205,0.5)",
+                    "rgba(176,196,222,0.8)"
                 ],
             }]
         },
@@ -355,28 +355,28 @@ app.myChart2 = function (hero2) {
     console.log(app.total2)
 
     if (app.total1 - app.total2 > 200) {
-        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
+        $('.resultsText').text(`Even Jeff can beat up ${app.heroInput2}.`)
     }
     else if (app.total1 - app.total2 > 100) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
+        $('.resultsText').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
     }
     else if (app.total1 - app.total2 > 50) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+        $('.resultsText').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
     }
     else if (app.total1 - app.total2 > 0 ) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+        $('.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
     }
     else if (app.total2 - app.total1 > 200) {
-        $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`)
+        $('.resultsText').text(`Even Jeff can beat up ${app.heroInput1}.`)
     }
     else if (app.total2 - app.total1 > 100) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
+        $('.resultsText').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
     }
     else if (app.total2 - app.total1 > 50) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
+        $('.resultsText').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
     }
     else if (app.total2 - app.total1 > 0) {
-        $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
+        $('.resultsText').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
     }
 }
 app.displayHero = function (hero1, hero2) { 
