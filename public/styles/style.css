@@ -150,6 +150,13 @@ h2 {
   letter-spacing: 3px;
   padding: 2% 0 35%; }
 
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
 header {
   height: 100vh;
   background: url(../../assets/deadpool.jpg) bottom no-repeat;
@@ -157,13 +164,16 @@ header {
   @media (max-width: 900px) {
     header {
       background: url(../../assets/deadpool-responsive.jpg) center no-repeat; } }
-  header h1 {
+  header h1.welcome {
     font-size: 60px;
     font-family: "Bangers", cursive;
     letter-spacing: 5px;
     text-align: center;
     margin: 0;
     text-shadow: 2px 2px 3px white; }
+    @media (max-width: 750px) {
+      header h1.welcome {
+        display: none; } }
 
 input[type=submit] {
   display: block;
@@ -182,7 +192,7 @@ input[type=submit] {
 
 .speech-bubble {
   position: relative;
-  top: -10%;
+  top: -5%;
   right: 1%;
   background: #fafff9;
   border-radius: 3rem;
@@ -202,9 +212,10 @@ input[type=submit] {
       right: 0; } }
   @media (max-width: 650px) {
     .speech-bubble {
-      right: 2%;
+      right: 1%;
       width: 95%;
-      font-size: 1.5rem; } }
+      font-size: 1.3rem;
+      top: 0; } }
 
 .speech-bubble:after {
   content: '';
@@ -274,13 +285,6 @@ input[type=submit] {
 .secondbutton {
   width: 100%; }
 
-.wrapper {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column; }
-
 .searchHero {
   text-align: center;
   width: 100%; }
@@ -330,7 +334,8 @@ input[type=submit] {
 
 .heroResults {
   background: #fae16c;
-  width: 100%; }
+  width: 100%;
+  padding: 2rem 0; }
   .heroResults .resultsText {
     font-size: 4rem;
     font-family: "Bangers", cursive;
@@ -338,8 +343,10 @@ input[type=submit] {
     text-shadow: 1px 1px 1px black;
     width: 100%;
     text-align: center;
-    margin: 0;
     letter-spacing: 2px; }
+    @media (max-width: 750px) {
+      .heroResults .resultsText {
+        font-size: 3rem; } }
 
 input[type=radio] {
   visibility: hidden; }
