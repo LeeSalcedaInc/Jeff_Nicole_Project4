@@ -427,10 +427,16 @@ app.getData = async function Data() {
 app.event = function () {
     $('.searchHero').on('submit', function (e) {
         e.preventDefault();
+        // if (hero1.results.length < 2 && hero2.results.length < 2) {
+        //     $('html, body').animate({
+        //         scrollTop: $('#finalResults').offset().top
+        //     }, 1000);
+        // }
         app.heroInput1 = $('.hero1').val().trim();
         app.heroInput2 = $('.hero2').val().trim();
         app.searchValue1 = app.characters1.push($('.hero1').val());
         app.searchValue2 = app.characters2.push($('.hero2').val());
+     
         app.getData();
     });
 }  

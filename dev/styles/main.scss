@@ -220,14 +220,16 @@ input[type=submit] {
 }
 .heroResults {
     background: #fae16c;
+    width:100%;
     .resultsText {
-        font-size: 5rem;
-        font-family: $font-main;
+        font-size: 4rem;
+        font-family: $font-comic;
         color: white;
         text-shadow: 1px 1px 1px black;
-        width: 60%;
-        text-align: left;
+        width: 100%;
+        text-align: center;
         margin-left: 2rem;
+        letter-spacing: 2px;
     }
 }
 
