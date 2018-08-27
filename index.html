@@ -8,15 +8,18 @@
     <link href="https://fonts.googleapis.com/css?family=Bangers|Coming+Soon|Open+Sans:400,700" rel="stylesheet">
     <link rel="stylesheet" href="public/styles/style.css">
     <script src="dev/scripts/Chart.min.js"></script>
-    <title>Jeff and Nicole - Project 4</title>
+    <title>★ Super Hero Comparison ★</title>
 </head>
 
 <body>
+    <!-- HEADER BEGINS -->
     <header>
         <div class="wrapper">
+            <!-- SPEECH BUBBLE BEGINS -->
             <div class="speech-bubble">
                 <div class="speechListContainer">
                     <p class="speechText">All you gotta do is type in the name of your superhero to compare stats. All names are searchable....just better not be a name that starts with f and ends with rancis.</p>
+                    <!-- SECONDARY FORM BEGINS -->
                     <form class="secondaryForm">
                         <div class="speechContainer">
                             <fieldset class="speechList1">
@@ -27,25 +30,34 @@
                             </div>
                         </div>
                     </form>
+                    <!-- SECONDARY FORM ENDS -->
                 </div>
             </div>
-            <h1>Hey you!</h1>
+            <!-- SPEECH BUBBLE ENDS -->
+            <h1 class="welcome" >Hey you!</h1>
+            <!-- SEARCH HERO FORM BEGINS -->
             <form action="" class="searchHero">
                 <input type="search" class="hero1" placeholder="Hero / Villain Name" required>
                 <input type="search" class="hero2" placeholder="Hero / Villain Name" required>
                 <input type="submit" value="Submit" required>
             </form>
+            <!-- SEARCH HERO FORM ENDS -->
         </div>
     </header>
+    <!-- HEADER ENDS -->
+    <!-- STATCONTAINER BEGINS -->
     <section class="statContainer" id="finalResults">
         <div class="stats1">
         </div>
         <div class="stats2">
         </div>
     </section>
+    <!-- STAT CONTAINER ENDS -->
+    <!-- HERORESULTS BEGINS -->
     <section class="heroResults">
         <h1 class="resultsText"></h1>
     </section>
+    <!-- HERO RESULTS ENDS -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="dev/scripts/ajax.js"></script>

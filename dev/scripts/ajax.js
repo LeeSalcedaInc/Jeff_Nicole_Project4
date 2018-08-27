@@ -98,7 +98,7 @@ app.displaySpeechBubble = function(hero1, hero2){
 }
 
 
-
+// SUBMIT EVENT OF SECONDARY FORM TO SCROLL DOWN TO RESULTS
 app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
         $('.stats1').empty();
@@ -346,6 +346,7 @@ app.myChart2 = function (hero2) {
             }
         }
     }); // End of Chart
+    // ADDING HERO2 STATS
     app.emptyarray2.push(hero2.results[0].powerstats.combat);
     app.emptyarray2.push(hero2.results[0].powerstats.durability);
     app.emptyarray2.push(hero2.results[0].powerstats.intelligence);
@@ -358,7 +359,7 @@ app.myChart2 = function (hero2) {
     const reducer2 = (add, total) => add + total;
     app.total2 = num2.reduce(reducer2);
     console.log(app.total2)
-
+// IF ELSE CONDITIONS FOR DISPLAYING HERO RESULTS MESSAGE
     if (app.total1 - app.total2 > 200) {
         $('.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput2}.`)
     }
@@ -384,6 +385,7 @@ app.myChart2 = function (hero2) {
         $('.resultsText').text(`${app.heroInput2} is gonna beat up ${app.heroInput1}.`)
     }
 }
+// FUNCTION TO DISPLAY HERO IMAGES AND TITLE
 app.displayHero = function (hero1, hero2) { 
     if (hero1.results.length < 2 && hero2.results.length < 2) {
     $('.stats1, .stats2').empty();
@@ -404,6 +406,7 @@ app.displayHero = function (hero1, hero2) {
     }).prepend(displayHeroName2).append(canvas2);
 }
 }
+// FUNCTION TO ADD TOTAL OF STATS OF HERO1
 app.totalstats = function (hero1) {
     app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.combat)
     app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.durability)
@@ -420,6 +423,7 @@ app.totalstats = function (hero1) {
     console.log(total)
 
 }
+// ASYNC FUNCTION
 app.getData = async function Data() {
     app.firstHeroName = await app.getHero1(app.characters1); 
     console.log(app.firstHeroName)
@@ -437,6 +441,7 @@ app.getData = async function Data() {
 
     
 }
+// SUBMIT FUNCTION OF SEARCH HERO FORM
 app.event = function () {
     $('.searchHero').on('submit', function (e) {
         e.preventDefault();
@@ -449,15 +454,14 @@ app.event = function () {
         app.getData();
     });
 }  
-
+// INIT 
 app.init = function () {
     app.getHero1();
     app.getHero2();
     app.event();
 };
-
+// DOC READY
 $(function () {
-    // $('section').addClass('.displayNone');
     app.init();
     
 });

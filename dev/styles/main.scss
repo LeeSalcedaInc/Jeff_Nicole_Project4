@@ -1,6 +1,7 @@
+// IMPORT PARTIALS
 @import 'partials/setup';
 @import 'partials/utils';
-
+// GENERAL STYLES
 html {
     font-size: 62.5%;
     background: #feda44;
@@ -12,7 +13,6 @@ body, p, h1, h2 {
 img {
    max-width: 100%;
 }
-
 h2 {
     color: seashell;
     font-family: $font-comic;
@@ -21,7 +21,14 @@ h2 {
     letter-spacing: 3px;
     padding: 2% 0 35%;
 }
-
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+// HEADER STYLES BEGINS
 header {
     height: 100vh;
     background: url(../../assets/deadpool.jpg) bottom no-repeat;
@@ -29,13 +36,16 @@ header {
     @include breakPoint(break2){
         background: url(../../assets/deadpool-responsive.jpg) center no-repeat;
     }
-    h1 {
+    h1.welcome {
     font-size: 60px;
     font-family: $font-comic;
     letter-spacing: 5px;
     text-align: center;
     margin: 0;
     text-shadow: 2px 2px 3px white;
+    @include breakPoint(break5){
+        display:none;
+    }
     }
 }
 input[type=submit] {
@@ -56,7 +66,7 @@ input[type=submit] {
 }
 .speech-bubble {
     position: relative;
-    top: -10%;
+    top: -5%;
     right: 1%;
 	background: #fafff9;
     border-radius: 3rem;
@@ -75,9 +85,10 @@ input[type=submit] {
         right: 0;
     }
     @include breakPoint(break6){
-        right: 2%;
+        right: 1%;
         width: 95%;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        top: 0;
     }
 
 
@@ -159,20 +170,9 @@ input[type=submit] {
     color: tomato;
     text-shadow: 1px 1px 1px black;
 }
-
 .secondbutton {
     width: 100%;
 }
-
-
-.wrapper {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 .searchHero {
     text-align: center;
     width: 100%;
@@ -202,10 +202,8 @@ input[type=submit] {
         }
     }
 }
-// .displayNone {
-//     display: none;
-// }
-
+// HEADER STYLES ENDS
+// STAT CONTAINER STYLES BEGINS
 .statContainer {
    display: flex;
    justify-content: space-between;
@@ -229,9 +227,12 @@ input[type=submit] {
       }
    }
 }
+// STAT CONTAINER STYLES END
+// HERO RESULTS MESSAGE STYLES BEGINS
 .heroResults {
     background: #fae16c;
     width:100%;
+    padding: 2rem 0;
     .resultsText {
         font-size: 4rem;
         font-family: $font-comic;
@@ -239,11 +240,14 @@ input[type=submit] {
         text-shadow: 1px 1px 1px black;
         width: 100%;
         text-align: center;
-        margin: 0;
         letter-spacing: 2px;
+        @include breakPoint(break5){
+            font-size: 3rem;
+        }
 
     }
 }
+// HERO RESULTS MESSAGE STYLES ENDS
 
 // hiding the radio button
 input[type = radio] {
