@@ -7,3 +7,38 @@
 $font-comic: 'Bangers', cursive;
 $font-main: 'Open Sans', sans-serif;
 $font-writing: 'Coming Soon', cursive;
+
+// mixins
+@mixin breakPoint($point) {
+    @if $point == break0 {
+      @media (max-width:1200px) {@content;}
+    }
+    @if $point == break1 {
+        @media (max-width:1050px) { @content;}
+    }
+    @if $point == break2 {
+      @media (max-width:900px) { @content;}
+    }  
+   //  @if $point == break3 {
+   //    @media (max-width:850px) { @content;}
+   //  } 
+    @if $point == break4 {
+      @media (max-width:785px) { @content;}
+    } 
+    @if $point == break5 {
+      @media (max-width:750px) { @content;}
+    } 
+    @if $point == break6 {
+      @media (max-width:650px) { @content;}
+    } 
+   //  @if $point == break7 {
+   //    @media (max-width:550px) { @content;}
+   //  } 
+   //  @if $point == break8 {
+   //    @media (max-width:500px) { @content;}
+   //  }
+   //  @if $point == break9 {
+   //     @media (max-width:425px) {@content;}
+   //  }
+
+}

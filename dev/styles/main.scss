@@ -3,102 +3,15 @@
 
 html {
     font-size: 62.5%;
+    background: #feda44;
 }
-body {
+body, p, h1, h2 {
    margin: 0;
    padding: 0;
 }
-
-header {
-    height: 100vh;
-    background: url(../../assets/deadpool.jpg) bottom no-repeat;
-    background-size: cover;
+img {
+   max-width: 100%;
 }
-input[type=submit] {
-    display: block;
-    margin: 0 auto;
-    padding: 10px;
-    width: 50%;
-    border: 2px solid white;
-    border-radius: 10px;
-    background: black;
-    color: white;
-    font-family: $font-comic;
-    font-size: 2rem;
-    letter-spacing: 3px;
-}
-.speech-bubble {
-    position: relative;
-    top: 0;
-    right: 5%;
-	background: #fafff9;
-    border-radius: 3rem;
-    width: 60%;
-    font-family: $font-comic;
-    font-size: 2rem;
-    letter-spacing: 1.2px;
-    word-spacing: 1.3px;
-    padding: 1rem;
-    border: black solid 5px;
-
-}
-
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 95%;
-	width: 0;
-	height: 0;
-	border: 33px solid transparent;
-	border-top-color: black;
-	border-bottom: 0;
-	border-right: 0;
-	margin-left: -16.5px;
-	margin-bottom: -33px;
-}
-.speechListContainer {
-    // display: flex;
-    // justify-content: space-around;
-    // align-items:center;
-    // flex-direction: row;
-    .secondaryForm {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        align-items: center;
-        .speechContainer {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: row;
-            align-items: flex-start;
-            .speechList1 {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                border: none;
-            }
-            .speechList2 {
-                width: 50%;
-                display: flex;
-                flex-direction: column;
-                border:none;
-            }
-        }
-        input[type=submit].displayButton {
-            display: block;
-            width: 80%;
-            background: tomato;
-            &:hover {
-                background: #fae126;
-                border: solid 2px black;
-                color: black;
-            }
-
-        }
-    }
-}
-
 section {
     height: 100vh;
 }
@@ -111,6 +24,131 @@ h2 {
     padding: 2% 0 35%;
 }
 
+header {
+    height: 100vh;
+    background: url(../../assets/deadpool.jpg) bottom no-repeat;
+    background-size: cover;
+    @include breakPoint(break2){
+        background: url(../../assets/deadpool-responsive.jpg) center no-repeat;
+    }
+    h1 {
+    font-size: 60px;
+    font-family: $font-comic;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 3px white;
+    }
+}
+input[type=submit] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    width: 20%;
+    border: 2px solid white;
+    border-radius: 10px;
+    background: black;
+    color: white;
+    font-family: $font-comic;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    &:hover {
+        background: tomato;
+    }
+}
+.speech-bubble {
+    position: relative;
+    top: 1%;
+    right: 10%;
+	background: #fafff9;
+    border-radius: 3rem;
+    width: 60%;
+    font-family: $font-comic;
+    font-size: 2rem;
+    letter-spacing: 1.2px;
+    word-spacing: 1.3px;
+    padding: 1rem;
+    border: black solid 5px;
+    @include breakPoint(break6){
+        right: 5%;
+        width: 85%;
+        font-size: 1.5rem;
+    }
+    @include breakPoint(break5){
+        width: 88%;
+        right: 0;
+    }
+
+}
+ .speech-bubble:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 90%;
+        width: 0;
+        height: 0;
+        border: 33px solid transparent;
+        border-top-color: black;
+        border-bottom: 0;
+        border-right: 0;
+        margin-left: -16.5px;
+        margin-bottom: -33px;
+    }
+
+.speechListContainer {
+    .secondaryForm {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        .speechContainer {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 0.8;
+            padding: 0;
+            .speechList1 {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                border: none;
+                .speechText1 {
+                    color: tomato;
+                    width: 100%;
+                }
+            }
+            .speechList2 {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                border:none;
+                .speechText2 {
+                    color: tomato;
+                }
+            }
+        }
+        input[type=submit].displayButton {
+            display: block;
+            width: 80%;
+            background: tomato;
+            &:hover {
+                background: #feda44;
+                border: solid 2px black;
+                color: black;
+            }
+            @include breakPoint(break4){
+                width: 90%;
+            }
+        }
+    }
+}
+.speechText1, .speechText2 {
+    color: tomato;
+    text-shadow: 1px 1px 1px black;
+}
+
+
 .wrapper {
     height: 100vh;
     display: flex;
@@ -122,48 +160,61 @@ h2 {
 .searchHero {
     text-align: center;
     width: 100%;
+    input[type=search] {
+        padding: 15px;
+        width: 20%;
+        border-radius: 5px;
+        font-size: 2rem;
+        border: black solid 2px;
+        margin: 2rem 0;
+        box-shadow: 5px 5px 5px gray;
+        @include breakPoint(break2){
+            width: 80%;
+        }  
+        @include breakPoint(break5){
+            margin: 1rem;
+        } 
+    }
+    input[type=submit] {
+        @include breakPoint(break6){
+            width: 40%;
+        }
+    }
 }
+// .displayNone {
+//     display: none;
+// }
 
-input[type=search] {
-    padding: 15px;
-    width: 20%;
-    border-radius: 5px;
-    font-size: 2rem;
-    border: black solid 2px;
-    margin: 20px 0;
-    box-shadow: 5px 5px 5px gray;
-}
-
-h1 {
-   font-size: 60px;
-   font-family: $font-comic;
-   letter-spacing: 5px;
-   text-align: center;
-   margin: 0;
-}
-
-img {
-   max-width: 100%;
-}
 .statContainer {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
-   height: 100vh;
-   .stats1 {
+//    height: 100vh;
+   @include breakPoint(break6){
+       flex-direction: column;
+   }
+   .stats1, .stats2 {
       width: 50%;
       border: 5px solid white;
-      #myChart1 {
+      @include breakPoint(break6){
+          width: 100%;
+          height: 100vh;
+      }
+      #myChart1, #myChart2 {
           padding: 0 5rem;
+          @include breakPoint(break6){
+              width: 80%;
+          }
       }
    }
-   .stats2 {
-      width: 50%;
-      border: 5px solid white;
-     #myChart2 {
-          padding: 0 5rem;
-      }
-   }
+}
+.heroResults {
+    background: #fae16c;
+    h1 {
+        font-size: 5rem;
+        font-family: $font-main;
+        color: pink;
+    }
 }
 
 // hiding the radio button
@@ -179,3 +230,4 @@ label {
 input:checked + label {
     background: #fae16c;
 }
+
