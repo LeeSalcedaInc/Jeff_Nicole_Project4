@@ -13,11 +13,11 @@ app.emptyarray2 = [];
 // making our ajax request
 app.getHero1 = (name) => {
     return $.ajax({
-        url: 'http://proxy.hackeryou.com',
+        url: 'https://proxy.hackeryou.com',
         method: 'GET',
         dataType: 'json',
         data: {
-            reqUrl: `http://superheroapi.com/api/10205575676227056/search/${name}`,
+            reqUrl: `https://superheroapi.com/api/10205575676227056/search/${name}`,
             proxyHeaders: {
                 'Access-Control-Allow-Origin': '*'
             },
@@ -28,11 +28,11 @@ app.getHero1 = (name) => {
 };
 app.getHero2 = (name) => {
     return $.ajax({
-        url: 'http://proxy.hackeryou.com',
+        url: 'https://proxy.hackeryou.com',
         method: 'GET',
         dataType: 'json',
         data: {
-            reqUrl: `http://superheroapi.com/api/10205575676227056/search/${name}`,
+            reqUrl: `https://superheroapi.com/api/10205575676227056/search/${name}`,
             proxyHeaders: {
                 'Access-Control-Allow-Origin': '*'
             },
