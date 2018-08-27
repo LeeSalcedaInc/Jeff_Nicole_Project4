@@ -56,8 +56,8 @@ input[type=submit] {
 }
 .speech-bubble {
     position: relative;
-    top: 1%;
-    right: 10%;
+    top: -10%;
+    right: 1%;
 	background: #fafff9;
     border-radius: 3rem;
     width: 60%;
@@ -129,6 +129,13 @@ input[type=submit] {
                     color: tomato;
                 }
             }
+            .secondbutton {
+                width: 100%;
+                .displayButton {
+                    margin: 0;
+                    width: 100%;
+                }
+            }
         }
         input[type=submit].displayButton {
             display: block;
@@ -151,6 +158,10 @@ input[type=submit] {
 .speechText1, .speechText2 {
     color: tomato;
     text-shadow: 1px 1px 1px black;
+}
+
+.secondbutton {
+    width: 100%;
 }
 
 
@@ -199,7 +210,7 @@ input[type=submit] {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
-//    height: 100vh;
+   height: 100vh;
    @include breakPoint(break6){
        flex-direction: column;
    }
@@ -228,8 +239,9 @@ input[type=submit] {
         text-shadow: 1px 1px 1px black;
         width: 100%;
         text-align: center;
-        margin-left: 2rem;
+        margin: 0;
         letter-spacing: 2px;
+
     }
 }
 
