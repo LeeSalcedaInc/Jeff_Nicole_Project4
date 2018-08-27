@@ -103,6 +103,8 @@ app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
         $('.stats1').empty();
         $('.stats2').empty();
+        app.emptyarray1 = [];
+        app.emptyarray2 = [];
         e.preventDefault();
         // results scroll
         $('html, body').animate({
@@ -353,7 +355,6 @@ app.myChart2 = function (hero2) {
     let num2 = app.emptyarray2.map(function (x) {
         return parseInt(x, 10);
     });
-    console.log(num2)
     const reducer2 = (add, total) => add + total;
     app.total2 = num2.reduce(reducer2);
     console.log(app.total2)
@@ -368,7 +369,7 @@ app.myChart2 = function (hero2) {
         $('.resultsText').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
     }
     else if (app.total1 - app.total2 > 0 ) {
-        $('.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+        $('.resultsText').text(`${app.heroInput1} is gonna beat up ${app.heroInput2}.`)
     }
     else if (app.total2 - app.total1 > 200) {
         $('.resultsText').text(`HOLY MOLY, This is an annihilation! Even Jeff can beat up ${app.heroInput1}.`)
@@ -380,13 +381,14 @@ app.myChart2 = function (hero2) {
         $('.resultsText').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
     }
     else if (app.total2 - app.total1 > 0) {
-        $('.resultsText').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
+        $('.resultsText').text(`${app.heroInput2} is gonna beat up ${app.heroInput1}.`)
     }
 }
 app.displayHero = function (hero1, hero2) { 
     if (hero1.results.length < 2 && hero2.results.length < 2) {
-    $('.stats1').empty();
-    $('.stats2').empty();
+    $('.stats1, .stats2').empty();
+    app.emptyarray1 = [];
+    app.emptyarray2 = [];
     const displayHeroName1 = `<h2 class="displayHeroName">${app.firstHeroName.results[0].name}</h2>`;
     const displayHeroName2 = `<h2 class="displayHeroName">${app.secondHeroName.results[0].name}</h2>`
     const canvas1 = $('<canvas>').attr('id', 'myChart1')

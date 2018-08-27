@@ -210,7 +210,7 @@ input[type=submit] {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
-//    height: 100vh;
+   height: 100vh;
    @include breakPoint(break6){
        flex-direction: column;
    }
@@ -239,8 +239,9 @@ input[type=submit] {
         text-shadow: 1px 1px 1px black;
         width: 100%;
         text-align: center;
-        margin-left: 2rem;
+        margin: 0;
         letter-spacing: 2px;
+
     }
 }
 
