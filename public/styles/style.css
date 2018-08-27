@@ -1,0 +1,353 @@
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+  display: block; }
+
+audio, canvas, video {
+  display: inline-block; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden] {
+  display: none; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+a:focus {
+  outline: thin dotted; }
+
+a:active, a:hover {
+  outline: 0; }
+
+h1 {
+  font-size: 2em; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b, strong {
+  font-weight: 700; }
+
+dfn {
+  font-style: italic; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+code, kbd, pre, samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+q {
+  quotes: \201C \201D \2018 \2019; }
+
+small {
+  font-size: 80%; }
+
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -.5em; }
+
+sub {
+  bottom: -.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: .35em .625em .75em; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0; }
+
+button, input {
+  line-height: normal; }
+
+button, html input[type=button], input[type=reset], input[type=submit] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled], input[disabled] {
+  cursor: default; }
+
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type=search] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+input[type=search]::-webkit-search-cancel-button, input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+textarea {
+  overflow: auto;
+  vertical-align: top; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body, figure {
+  margin: 0; }
+
+legend, button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: '';
+  clear: both;
+  height: 0; }
+
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+html {
+  font-size: 62.5%;
+  background: #feda44; }
+
+body, p, h1, h2 {
+  margin: 0;
+  padding: 0; }
+
+img {
+  max-width: 100%; }
+
+h2 {
+  color: seashell;
+  font-family: "Bangers", cursive;
+  font-size: 4rem;
+  text-align: center;
+  letter-spacing: 3px;
+  padding: 2% 0 35%; }
+
+header {
+  height: 100vh;
+  background: url(../../assets/deadpool.jpg) bottom no-repeat;
+  background-size: cover; }
+  @media (max-width: 900px) {
+    header {
+      background: url(../../assets/deadpool-responsive.jpg) center no-repeat; } }
+  header h1 {
+    font-size: 60px;
+    font-family: "Bangers", cursive;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 0;
+    text-shadow: 2px 2px 3px white; }
+
+input[type=submit] {
+  display: block;
+  margin: 0 auto;
+  padding: 10px;
+  width: 20%;
+  border: 2px solid white;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  letter-spacing: 3px; }
+  input[type=submit]:hover {
+    background: tomato; }
+
+.speech-bubble {
+  position: relative;
+  top: -10%;
+  right: 1%;
+  background: #fafff9;
+  border-radius: 3rem;
+  width: 60%;
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  letter-spacing: 1.2px;
+  word-spacing: 1.3px;
+  padding: 1rem;
+  border: black solid 5px; }
+  @media (max-width: 900px) {
+    .speech-bubble {
+      font-size: 1.5rem; } }
+  @media (max-width: 750px) {
+    .speech-bubble {
+      width: 88%;
+      right: 0; } }
+  @media (max-width: 650px) {
+    .speech-bubble {
+      right: 2%;
+      width: 95%;
+      font-size: 1.5rem; } }
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 90%;
+  width: 0;
+  height: 0;
+  border: 33px solid transparent;
+  border-top-color: black;
+  border-bottom: 0;
+  border-right: 0;
+  margin-left: -16.5px;
+  margin-bottom: -33px; }
+
+.speechListContainer .secondaryForm {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center; }
+  .speechListContainer .secondaryForm .speechContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 0.8;
+    padding: 0; }
+    .speechListContainer .secondaryForm .speechContainer .speechList1 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border: none; }
+      .speechListContainer .secondaryForm .speechContainer .speechList1 .speechText1 {
+        color: tomato;
+        width: 100%; }
+    .speechListContainer .secondaryForm .speechContainer .speechList2 {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      border: none; }
+      .speechListContainer .secondaryForm .speechContainer .speechList2 .speechText2 {
+        color: tomato; }
+    .speechListContainer .secondaryForm .speechContainer .secondbutton {
+      width: 100%; }
+      .speechListContainer .secondaryForm .speechContainer .secondbutton .displayButton {
+        margin: 0;
+        width: 100%; }
+  .speechListContainer .secondaryForm input[type=submit].displayButton {
+    display: block;
+    width: 80%;
+    background: tomato; }
+    .speechListContainer .secondaryForm input[type=submit].displayButton:hover {
+      background: #feda44;
+      border: solid 2px black;
+      color: black; }
+    @media (max-width: 785px) {
+      .speechListContainer .secondaryForm input[type=submit].displayButton {
+        width: 90%; } }
+    @media (max-width: 650px) {
+      .speechListContainer .secondaryForm input[type=submit].displayButton {
+        width: 95%; } }
+
+.speechText1, .speechText2 {
+  color: tomato;
+  text-shadow: 1px 1px 1px black; }
+
+.secondbutton {
+  width: 100%; }
+
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+
+.searchHero {
+  text-align: center;
+  width: 100%; }
+  .searchHero input[type=search] {
+    padding: 15px;
+    width: 20%;
+    border-radius: 5px;
+    font-size: 2rem;
+    border: black solid 2px;
+    margin: 1rem 0;
+    box-shadow: 5px 5px 5px gray; }
+    @media (max-width: 900px) {
+      .searchHero input[type=search] {
+        width: 80%; } }
+    @media (max-width: 750px) {
+      .searchHero input[type=search] {
+        margin: 0.5rem; } }
+    @media (max-width: 650px) {
+      .searchHero input[type=search] {
+        font-size: 1.4rem;
+        margin: 0.2rem;
+        padding: 1rem; } }
+  @media (max-width: 650px) {
+    .searchHero input[type=submit] {
+      width: 40%; } }
+
+.statContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 100vh; }
+  @media (max-width: 650px) {
+    .statContainer {
+      flex-direction: column; } }
+  .statContainer .stats1, .statContainer .stats2 {
+    width: 50%;
+    border: 5px solid white; }
+    @media (max-width: 650px) {
+      .statContainer .stats1, .statContainer .stats2 {
+        width: 100%;
+        height: 100vh; } }
+    .statContainer .stats1 #myChart1, .statContainer .stats1 #myChart2, .statContainer .stats2 #myChart1, .statContainer .stats2 #myChart2 {
+      padding: 0 4rem; }
+      @media (max-width: 650px) {
+        .statContainer .stats1 #myChart1, .statContainer .stats1 #myChart2, .statContainer .stats2 #myChart1, .statContainer .stats2 #myChart2 {
+          width: 80%; } }
+
+.heroResults {
+  background: #fae16c;
+  width: 100%; }
+  .heroResults .resultsText {
+    font-size: 4rem;
+    font-family: "Bangers", cursive;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 2px; }
+
+input[type=radio] {
+  visibility: hidden; }
+
+label {
+  cursor: pointer; }
+  label:hover {
+    background: tomato; }
+
+input:checked + label {
+  background: #fae16c; }
