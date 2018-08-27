@@ -22,12 +22,12 @@ $font-writing: 'Coming Soon', cursive;
    //  @if $point == break3 {
    //    @media (max-width:850px) { @content;}
    //  } 
-   //  @if $point == break4 {
-   //    @media (max-width:785px) { @content;}
-   //  } 
-   //  @if $point == break5 {
-   //    @media (max-width:750px) { @content;}
-   //  } 
+    @if $point == break4 {
+      @media (max-width:785px) { @content;}
+    } 
+    @if $point == break5 {
+      @media (max-width:750px) { @content;}
+    } 
     @if $point == break6 {
       @media (max-width:650px) { @content;}
     } 

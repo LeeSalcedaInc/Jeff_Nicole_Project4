@@ -101,6 +101,10 @@ app.displaySpeechBubble = function(hero1, hero2){
 app.submitEvent = function (hero1, hero2) {
     $('.secondaryForm').on('submit', function (e) {
         e.preventDefault();
+        // results scroll
+        $('html, body').animate({
+            scrollTop: $('#finalResults').offset().top
+        }, 1000);
         app.getByValue = function () {
             for (var i = 0; i < app.uniqueHeroObjects1.length; i++) {
                 if (app.uniqueHeroObjects1[i].biography["full-name"] == ($("input[name=firstHeroName]:checked").data('name'))) {
@@ -220,35 +224,32 @@ app.submitEvent = function (hero1, hero2) {
                 }
 
                 if (app.total1 - app.total2 > 200) {
-                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`)
+                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput2}.`);
                 }
                 else if (app.total1 - app.total2 > 100) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna absolutely destroy ${app.heroInput2}.`);
                 }
                 else if (app.total1 - app.total2 > 50) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna kick ${app.heroInput2}'s ass`);
                 }
                 else if (app.total1 - app.total2 > 0) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput1} is gonna beat up ${app.heroInput2} period.`);
                 }
                 else if (app.total2 - app.total1 > 200) {
-                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`)
+                    $('.heroResults').append('<h1>').text(`Even Jeff can beat up ${app.heroInput1}.`);
                 }
                 else if (app.total2 - app.total1 > 100) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna absolutely destroy ${app.heroInput1}.`);
                 }
                 else if (app.total2 - app.total1 > 50) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna kick ${app.heroInput1}'s ass`);
                 }
                 else if (app.total2 - app.total1 > 0) {
-                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
+                    $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`);
                 }
             }
         }
         console.log(app.getByValue(app.firstHeroName, app.secondHeroName));
-        
-    
-// this is where the input conditionals should be for diplaying the images below based on selection
     });
 }
 // myChart1 begins here
@@ -302,7 +303,6 @@ app.myChart1 = function(hero1){
     app.total1 = num1.reduce(reducer1);
     console.log(app.total1)
 }
-    // chart2 begins
     // myChart2 begins here
 app.myChart2 = function (hero2) {    
     let ctx2 = document.getElementById('myChart2').getContext('2d');
@@ -379,11 +379,6 @@ app.myChart2 = function (hero2) {
         $('.heroResults').append('<h1>').text(`${app.heroInput2} is gonna beat up ${app.heroInput1} period.`)
     }
 }
-app.displayWinner = function(hero1, hero2){
-    // if the input selected contains the same fullname, display the object's stats
-    // let heroAnswer1 = $('.firstHeroName input[type = radio]:checked');
-    // console.log(heroAnswer1);
-}
 app.displayHero = function (hero1, hero2) { 
     if (hero1.results.length < 2 && hero2.results.length < 2) {
     const displayHeroName1 = `<h2 class="displayHeroName">${app.firstHeroName.results[0].name}</h2>`;
@@ -399,7 +394,6 @@ app.displayHero = function (hero1, hero2) {
     }).prepend(displayHeroName2);
 }
 }
-
 app.totalstats = function (hero1) {
     app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.combat)
     app.emptyarray.push(app.uniqueHeroObjects1[i].powerstats.durability)
@@ -416,23 +410,20 @@ app.totalstats = function (hero1) {
     console.log(total)
 
 }
-    app.getData = async function Data() {
-        app.firstHeroName = await app.getHero1(app.characters1); 
-        console.log(app.firstHeroName)
-        app.secondHeroName = await app.getHero2(app.characters2);
-        app.displayHero(app.firstHeroName, app.secondHeroName);
-        if (app.firstHeroName.results.length < 2 && app.secondHeroName.results.length < 2) {
-            this.myChart1(app.firstHeroName);
-            this.myChart2(app.secondHeroName);
-        }
-        app.displayWinner(app.firstHeroName, app.secondHeroName, app.myChart);
-        app.displaySpeechBubble(app.firstHeroName, app.secondHeroName);
-        app.submitEvent();
-    
-        
+app.getData = async function Data() {
+    app.firstHeroName = await app.getHero1(app.characters1); 
+    console.log(app.firstHeroName)
+    app.secondHeroName = await app.getHero2(app.characters2);
+    app.displayHero(app.firstHeroName, app.secondHeroName);
+    if (app.firstHeroName.results.length < 2 && app.secondHeroName.results.length < 2) {
+        this.myChart1(app.firstHeroName);
+        this.myChart2(app.secondHeroName);
     }
+    app.displaySpeechBubble(app.firstHeroName, app.secondHeroName);
+    app.submitEvent();
 
-
+    
+}
 app.event = function () {
     $('.searchHero').on('submit', function (e) {
         e.preventDefault();
@@ -448,12 +439,11 @@ app.init = function () {
     app.getHero1();
     app.getHero2();
     app.event();
-   
 };
 
-
 $(function () {
+    // $('section').addClass('.displayNone');
     app.init();
-
+    
 });
 
