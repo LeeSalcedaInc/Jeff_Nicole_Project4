@@ -208,7 +208,7 @@ input[type=submit] {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
-   height: 100vh;
+//    height: 100vh;
    @include breakPoint(break6){
        flex-direction: column;
    }
@@ -232,7 +232,7 @@ input[type=submit] {
 .heroResults {
     background: #fae16c;
     width:100%;
-    padding: 2rem 0;
+    // padding: 2rem 0;
     .resultsText {
         font-size: 4rem;
         font-family: $font-comic;
